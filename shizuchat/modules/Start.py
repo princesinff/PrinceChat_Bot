@@ -152,6 +152,7 @@ async def start(_, m: Message):
         accha = await m.reply_text(
             text=random.choice(EMOJIOS),
         )
+        await accha.delete()
         await asyncio.sleep(0.5)
         umm = await m.reply_sticker(sticker=random.choice(STICKER))
         chat_photo = BOT  
