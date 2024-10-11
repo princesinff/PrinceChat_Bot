@@ -13,7 +13,7 @@ import config
 from shizuchat.modules.helpers import mongo
 from shizuchat.modules.helpers.mongo import db
 
-    @shizuchat.on_cmd(
+@shizuchat.on_cmd(
         filters.command("block") & filters.user(OWNER_ID)
     )
     async def block_func(_, message: Message):
