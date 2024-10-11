@@ -153,33 +153,6 @@ async def start(_, m: Message):
             text=random.choice(EMOJIOS),
         )
         await asyncio.sleep(0.5)
-        
-        await accha.edit("**__ᴅ__**")
-        await accha.edit("**__ᴅι__**")
-        await accha.edit("**__ᴅιи__**")
-        await accha.edit("**__ᴅιиg__**")
-        await accha.edit("**__ᴅιиg ᴅ__**")
-        await accha.edit("**__ᴅιиg ᴅσ__**")
-        await accha.edit("**__ᴅιиg ᴅσи__**")
-        await accha.edit("**__ᴅιиg ᴅσиg__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎ ѕ__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ sт__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎ ѕтα__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎ ѕтαя__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ sтαят__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎ sтαятι__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎ sтαятιи__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ sтαятιиg__**")
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎ ѕтαятιиg.__**")
-        await asyncio.sleep(0.1)
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ sтαятιиg.....__**")
-        await asyncio.sleep(0.1)
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ︎ ѕтαятιиg.__**")
-        await asyncio.sleep(0.1)
-        await accha.edit("**__ᴅιиg ᴅσиg ꨄ sтαятιиg.....__**")
-        await accha.delete()
-        
         umm = await m.reply_sticker(sticker=random.choice(STICKER))
         chat_photo = BOT  
         if m.chat.photo:
