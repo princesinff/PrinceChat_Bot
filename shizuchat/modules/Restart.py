@@ -1,6 +1,7 @@
 import os
 import shutil
 import asyncio
+from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram import filters, Client
 from shizuchat import shizuchat
