@@ -319,7 +319,7 @@ async def cb_handler(_, query: CallbackQuery):
             text=AIBOT_READ,
             reply_markup=InlineKeyboardMarkup(HELP_BTN),
         )
-       elif query.data == "TOOLS_DATA":
+    elif query.data == "TOOLS_DATA":
         await query.message.edit(
             text=TOOLS_DATA_READ,
             reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
