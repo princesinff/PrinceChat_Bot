@@ -13,10 +13,8 @@ import config
 from shizuchat.modules.helpers import mongo
 from shizuchat.modules.helpers.mongo import db
 
-@shizuchat.on_cmd(
-        filters.command("block") & filters.user(OWNER_ID)
-    )
-    async def block_func(_, message: Message):
+@shizuchat.on_cmd(["start", "aistart"])
+async def block_func(_, message: Message):
         if db is None:
             return await message.reply_text(
                 "MONGO_DB_URI var not defined. Please define it first"
