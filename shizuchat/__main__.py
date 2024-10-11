@@ -22,7 +22,7 @@ async def anony_boot():
 
         # Set bot commands
     try:
-        await nexichat.set_bot_commands(
+        await shizuchat.set_bot_commands(
             commands=[
                 BotCommand("start", "sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ."),
                 BotCommand("help", "ɢᴇᴛ ᴛʜᴇ ʜᴇʟᴘ ᴍᴇɴᴜ."),
