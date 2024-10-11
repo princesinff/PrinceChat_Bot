@@ -6,7 +6,7 @@ from pyrogram import filters, Client
 from shizuchat import shizuchat
 from config import OWNER_ID
 
-@shizuchat.on_cmd(["restart"]) & OWNER_ID)
+@shizuchat.on_cmd(filters.command(["restart"]) & OWNER_ID)
 async def restart(client: Client, message: Message):
     reply = await message.reply_text("**🔁 Rᴇsᴛᴀʀᴛɪɴɢ 🔥 ...**")
     await message.delete()
