@@ -49,6 +49,14 @@ TOOLS_DATA_READ = f"""**
 ๏ ᴍᴀᴅᴇ ʙʏ ➪ [ʙᴀᴅ ✯ ᴍᴜɴᴅᴀ](https://t.me/ll_BAD_MUNDA_ll) 💞**
 """
 
+AIBOT_READ = f"""**
+๏ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ {shizuchat.mention}:
+
+➻ /ai - ɪ ᴀsᴋ ᴀɴʏ ǫᴜᴇᴅᴛɪᴏɴ .
+──────────────
+📡 ᴍᴀᴅᴇ ʙʏ ➪ [ʙᴀᴅ ✯ ᴍᴜɴᴅᴀ](https://t.me/ll_BAD_MUNDA_ll) 💞**
+"""
+
 CHATBOT_READ = f"""**
 ๏ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ {shizuchat.mention}:
 
