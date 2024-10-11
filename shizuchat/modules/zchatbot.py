@@ -317,7 +317,7 @@ async def cb_handler(_, query: CallbackQuery):
     elif query.data == "AIBOT_CMD":
         await query.message.edit(
             text=AIBOT_READ,
-            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
+            reply_markup=InlineKeyboardMarkup(DEV_OP),
         )
     elif query.data == "TOOLS_DATA":
         await query.message.edit(
