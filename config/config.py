@@ -14,3 +14,6 @@ OWNER_ID = int(getenv("OWNER_ID", "7009601543"))
 SUPPORT_GRP = "PBX_CHAT"
 UPDATE_CHNL = "HEROKUBIN_01"
 OWNER_USERNAME = "ll_BAD_MUNDA_ll"
+# --------------------------------------------------------------
+SUDO_USERS = list(map(int, getenv("SUDO_USERS", "7009601543").split()))
+# --------------------------------------------------------------
