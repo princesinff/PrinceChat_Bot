@@ -12,12 +12,7 @@ from pyrogram.enums import ChatAction, ParseMode
 from pyrogram import filters
 
 
-@shizuchat.on_cmd(
-    filters.command(
-        ["chatgpt", "ai", "ask", "gpt", "solve"],
-        prefixes=["+", ".", "/", "-", "", "$", "#", "&"],
-    )
-)
+@shizuchat.on_cmd(["ai", "chatgpt"])
 async def chat_gpt(bot, message):
     
     try:
