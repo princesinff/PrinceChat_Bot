@@ -13,7 +13,7 @@ import config
 from shizuchat.modules.helpers import mongo
 from shizuchat.modules.helpers.mongo import db
 
-@shizuchat.on_cmd(["start", "aistart"])
+@shizuchat.on_cmd(["block"])
 async def block_func(_, message: Message):
         if db is None:
             return await message.reply_text(
@@ -49,10 +49,8 @@ async def block_func(_, message: Message):
                 "Reply to a user's forwarded message to block him from using the bot"
             )
 
-    @shizuchat.on_cmd(
-        filters.command("unblock") & filters.user(OWNER_ID)
-    )
-    async def unblock_func(_, message: Message):
+@shizuchat.on_cmd(["unblock"])
+async def unblock_func(_, message: Message):
         if db is None:
             return await message.reply_text(
                 "MONGO_DB_URI var not defined. Please define it first"
