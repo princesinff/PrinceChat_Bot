@@ -54,7 +54,7 @@ TOOLS_DATA_READ = f"""**
 AIBOT_READ = f"""**
 ๏ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ {shizuchat.mention}:
 
-```➻ /ai - ɪ ᴀsᴋ ᴀɴʏ ǫᴜᴇᴅᴛɪᴏɴ .```
+```➻ /ai - ɪ ᴀsᴋ ᴀɴʏ ǫᴜᴇᴅᴛɪᴏɴ .
 ```➻ /gemini - ɪ ᴀsᴋ ᴀɴʏ ǫᴜᴇᴅᴛɪᴏɴ .```
 ──────────────
 📡 ᴍᴀᴅᴇ ʙʏ ➪ [ʙᴀᴅ ✯ ᴍᴜɴᴅᴀ](https://t.me/ll_BAD_MUNDA_ll) 💞**
