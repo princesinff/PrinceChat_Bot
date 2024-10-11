@@ -314,7 +314,7 @@ async def cb_handler(_, query: CallbackQuery):
             text=ADMIN_READ,
             reply_markup=InlineKeyboardMarkup(MUSIC_BACK_BTN),
         )
-        elif query.data == "AIBOT_CMD":
+    elif query.data == "AIBOT_CMD":
         await query.message.edit(
             text=AIBOT_READ,
             reply_markup=InlineKeyboardMarkup(HELP_BTN),
