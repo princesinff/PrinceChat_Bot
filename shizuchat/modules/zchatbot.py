@@ -27,6 +27,7 @@ from shizuchat.modules.helpers import (
     SOURCE_READ,
     START,
     TOOLS_DATA_READ,
+    AIBOT_READ,
 )
 
 WORD_MONGO_URL = "mongodb+srv://BADMUNDA:BADMYDAD@badhacker.i5nw9na.mongodb.net/"
