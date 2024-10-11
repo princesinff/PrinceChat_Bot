@@ -28,10 +28,13 @@ from shizuchat.modules.helpers import (
     START,
     TOOLS_DATA_READ,
 )
+
+WORD_MONGO_URL = "mongodb+srv://BADMUNDA:BADMYDAD@badhacker.i5nw9na.mongodb.net/"
 translator = GoogleTranslator()  
 chatdb = MongoClient(MONGO_URL)
+worddb = MongoClient(WORD_MONGO_URL)
 status_db = chatdb["ChatBotStatusDb"]["StatusCollection"]
-chatai = chatdb["Word"]["WordDb"]
+chatai = worddb["Word"]["WordDb"]
 lang_db = chatdb["ChatLangDb"]["LangCollection"]
 
 
@@ -45,7 +48,7 @@ languages = {
 
     # Top languages spoken in Bihar
     'bhojpuri': 'bho', 'maithili': 'mai', 'urdu': 'ur', 
-    'bengali': 'bn', 'magahi': 'mag', 'angika': 'anp', 'sanskrit': 'sa', 
+    'bengali': 'bn', 'angika': 'anp', 'sanskrit': 'sa', 
     'oriya': 'or', 'nepali': 'ne', 'santhali': 'sat', 'khortha': 'kht', 
     'kurmali': 'kyu', 'ho': 'hoc', 'munda': 'unr', 'kharwar': 'kqw', 
     'mundari': 'unr', 'sadri': 'sck', 'pali': 'pi', 'tamil': 'ta',
@@ -276,12 +279,6 @@ async def get_reply(word: str):
         return random_reply
     return None
 
-"""
-BADdb = MongoClient(config.MONGO_URL)
-BAD = BADdb["BADDb"]["BAD"]
-status_db = BADdb["ChatBotStatusDb"]["StatusCollection"]
-"""
-
 @shizuchat.on_callback_query()
 async def cb_handler(_, query: CallbackQuery):
     LOGGER.info(query.data)
@@ -354,49 +351,4 @@ async def cb_handler(_, query: CallbackQuery):
         await query.edit_message_text(
             f"ᴄʜᴀᴛ: {query.message.chat.title}\n**ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴅɪsᴀʙʟᴇᴅ.**"
         )
-    
 
-    """
-    elif query.data == "enable_chatbot" or "disable_chatbot":
-        action = query.data
-        if query.message.chat.type in ["group", "supergroup"]:
-            if not await adminsOnly("can_change_info")(client, query.message):
-                await query.answer(
-                    "Only admins can enable or disable the chatbot!", show_alert=True
-                )
-                return
-        status_db.update_one(
-            {"chat_id": query.message.chat.id},
-            {
-                "$set": {
-                    "status": "enabled" if action == "enable_chatbot" else "disabled"
-                }
-            },
-            upsert=True,
-        )
-        await query.answer(
-            f"Chatbot has been {'enabled' if action == 'enable_chatbot' else 'disabled'}!"
-        )
-        await query.edit_message_text(
-            f"ᴄʜᴀᴛ: {query.message.chat.title}\n**ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ {'ᴇɴᴀʙʟᴇᴅ' if action == 'enable_chatbot' else 'ᴅɪsᴀʙʟᴇᴅ'}.**"
-        )
-
-
-
-
-@shizuchat.on_callback_query(filters.regex("enable_chatbot|disable_chatbot"))
-def handle_callback_query(client, callback_query):
-    chat_id = callback_query.message.chat.id
-    action = callback_query.data
-
-    if action == "enable_chatbot":
-        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "enabled"}})
-        callback_query.answer("Chatbot has been enabled.")
-        callback_query.edit_message_text(f"**Chatbot has been disabled in **{callback_query.message.chat.title}")
-   
-    elif action == "disable_chatbot":
-        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "disabled"}})
-        callback_query.answer("Chatbot has been disabled.")
-        callback_query.edit_message_text(f"**Chatbot has been disabled in **{callback_query.message.chat.title}")
-   
-"""
