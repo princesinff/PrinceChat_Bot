@@ -2,6 +2,7 @@ Abg==2.3.1
 pyrogram==2.0.106
 pymongo
 motor
+heroku3
 requests
 dnspython
 tgcrypto==1.2.2
