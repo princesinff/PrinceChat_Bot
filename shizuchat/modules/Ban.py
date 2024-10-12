@@ -127,8 +127,7 @@ async def kickFunc(_, message: Message):
 
 
 @shizuchat.on_message(
-    filters.command(["ban"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["ban"]))
 @adminsOnly("can_restrict_members")
 async def banFunc(_, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -193,11 +192,8 @@ async def banFunc(_, message: Message):
 
 
 # Unban members
-
-
 @shizuchat.on_message(
-    filters.command(["unban"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["unban"]))
 @adminsOnly("can_restrict_members")
 async def unban_func(_, message: Message):
     # we don't need reasons for unban, also, we
@@ -225,8 +221,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 
 
 @shizuchat.on_message(
-    filters.command(["promote"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["promote"]))
 @adminsOnly("can_promote_members")
 async def promoteFunc(_, message: Message):
     user_id = await extract_user(message)
@@ -380,11 +375,8 @@ async def back_callback(_, query: CallbackQuery):
 
 
 # Demote Member
-
-
 @shizuchat.on_message(
-    filters.command(["purge"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["purge"]))
 @adminsOnly("can_delete_messages")
 async def purgeFunc(_, message: Message):
     repliedmsg = message.reply_to_message
@@ -429,10 +421,8 @@ async def purgeFunc(_, message: Message):
             revoke=True,
         )
 
-
 @shizuchat.on_message(
-    filters.command(["del"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["del"]))
 @adminsOnly("can_delete_messages")
 async def deleteFunc(_, message: Message):
     if not message.reply_to_message:
@@ -442,8 +432,7 @@ async def deleteFunc(_, message: Message):
 
 
 @shizuchat.on_message(
-    filters.command(["demote"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["demote"]))
 @adminsOnly("can_promote_members")
 async def demote(_, message: Message):
     user_id = await extract_user(message)
@@ -480,11 +469,8 @@ async def demote(_, message: Message):
 
 
 # Pin Messages
-
-
 @shizuchat.on_message(
-    filters.command(["unpinall"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["unpinall"]))
 @adminsOnly("can_pin_messages")
 async def pin(_, message: Message):
     if message.command[0] == "unpinall":
@@ -511,10 +497,8 @@ async def callback_query_handler(_, query: CallbackQuery):
             "Uɴᴘɪɴ ᴏғ ᴀʟʟ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇs ʜᴀs ʙᴇᴇɴ ᴄᴀɴᴄᴇʟʟᴇᴅ."
         )
 
-
 @shizuchat.on_message(
-    filters.command(["pin"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["pin"]))
 @adminsOnly("can_pin_messages")
 async def pin(_, message: Message):
     if not message.reply_to_message:
@@ -537,11 +521,8 @@ async def pin(_, message: Message):
 
 
 # Mute members
-
-
 @shizuchat.on_message(
-    filters.command(["mute"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["mute"]))
 @adminsOnly("can_restrict_members")
 async def mute(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
@@ -600,8 +581,7 @@ async def mute(_, message: Message):
 
 
 @shizuchat.on_message(
-    filters.command(["unmute"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["unmute"]))
 @adminsOnly("can_restrict_members")
 async def unmute(_, message: Message):
     user_id = await extract_user(message)
@@ -616,8 +596,7 @@ async def unmute(_, message: Message):
 
 
 @shizuchat.on_message(
-    filters.command(["warn"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["warn"]))
 @adminsOnly("can_restrict_members")
 async def warn_user(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
@@ -696,7 +675,8 @@ async def remove_warning(_, cq: CallbackQuery):
     await cq.message.edit(text)
 
 
-@shizuchat.on_message(filters.command("rmwarns") & ~filters.private & ~BANNED_USERS)
+@shizuchat.on_message(
+    filters.command(["rmwarns"]))
 @adminsOnly("can_restrict_members")
 async def remove_warnings(_, message: Message):
     user_id = await extract_user(message)
@@ -713,10 +693,8 @@ async def remove_warnings(_, message: Message):
         await remove_warns(chat_id, await int_to_alpha(user_id))
         await message.reply_text(f"ʀᴇᴍᴏᴠᴇᴅ ᴡᴀʀɴɪɴɢs ᴏғ {mention}.")
 
-
 @shizuchat.on_message(
-    filters.command(["warns"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["warns"]))
 @capture_err
 async def check_warns(_, message: Message):
     user_id = await extract_user(message)
@@ -778,8 +756,7 @@ async def ban_members(chat_id, user_id, bot_permission, total_members, msg):
 
 
 @shizuchat.on_message(
-    filters.command(["banall"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["banall"]))
 async def ban_all(_, msg):
     chat_id = msg.chat.id
     user_id = msg.from_user.id  # ID of the user who issued the command
@@ -808,8 +785,7 @@ from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UserAlreadyPa
 from BADMUSIC import app 
 
 @shizuchat.on_message(
-    filters.command(["unbanme"]) & ~filters.private(int(BANNED_USERS))
-)
+    filters.command(["unbanme"]))
 async def unbanme(client, message):
     try:
         # Check if the command has a group ID argument
