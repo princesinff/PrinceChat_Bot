@@ -9,7 +9,7 @@ import dotenv
 import heroku3
 import requests
 import urllib3
-from git import Repo
+from git import repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import Client, filters
 from pyrogram.enums import ChatAction
