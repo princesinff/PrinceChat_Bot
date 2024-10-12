@@ -23,3 +23,10 @@ SUDOERS = list(map(int, getenv("SUDOERS", "7009601543").split()))
 
 ### DONT TOUCH or EDIT codes after this line
 BANNED_USERS = filters.user()
+
+# For customized or modified Repository
+UPSTREAM_REPO = getenv(
+    "UPSTREAM_REPO",
+    "https://github.com/Badhacker98/Chat_Bot",
+)
+UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
