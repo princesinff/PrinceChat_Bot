@@ -33,9 +33,9 @@ from shizuchat.database.pastebin import BADbin
     filters.command(["gitpull", "update"]) & filters.user(int(OWNER_ID))
 )
 async def update(_, message: Message):
-        if HAPP is None:
+    if HAPP is None:
             return await message.reply_text(_["heroku_1"])
-            response = await message.reply_text(_["heroku_13"])
+    response = await message.reply_text(_["heroku_13"])
     try:
         repo = Repo()
     except GitCommandError:
