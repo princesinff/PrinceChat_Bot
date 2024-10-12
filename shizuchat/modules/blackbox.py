@@ -6,6 +6,7 @@ from pyrogram.enums import ChatAction,ParseMode
 from config import *
 from BadAPI import api
 from config import OWNER_USERNAME
+from shizuchat.modules.helpers.inline. import DEV_OP
 
 x=None
 #blackbox
@@ -22,7 +23,7 @@ async def blackbox_chat(bot, message):
         await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
         x=response["results"]
         
-        await message.reply_text(f"{x}\n\n🌸  ᴍᴀᴅᴇ ᴡɪᴛʜ ❣️ ʙʏ [ʙᴀᴅ ᴍᴜɴᴅᴀ](https://t.me/{OWNER_USERNAME}) ||",reply_markup=InlineKeyboardMarkup(gpt_button),quote=True,disable_web_page_preview =True,parse_mode=ParseMode.MARKDOWN)  
+        await message.reply_text(f"{x}\n\n🌸  ᴍᴀᴅᴇ ᴡɪᴛʜ ❣️ ʙʏ [ʙᴀᴅ ᴍᴜɴᴅᴀ](https://t.me/{OWNER_USERNAME}) ||",reply_markup=InlineKeyboardMarkup(DEV_OP),quote=True,disable_web_page_preview =True,parse_mode=ParseMode.MARKDOWN)  
         
             
     except requests.exceptions.RequestException as e:
