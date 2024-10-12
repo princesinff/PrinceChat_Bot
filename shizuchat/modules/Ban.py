@@ -542,7 +542,7 @@ async def mute(_, message: Message):
             "I can't mute an admin, You know the rules, so do i."
         )
         try:
-        mention = (await shizuchat.get_users(user_id)).mention
+            mention= (await shizuchat.get_users(user_id)).mention
     except IndexError:
         mention = (
             message.reply_to_message.sender_chat.title
