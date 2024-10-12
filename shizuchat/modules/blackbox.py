@@ -6,7 +6,7 @@ from pyrogram.enums import ChatAction,ParseMode
 from config import *
 from BadAPI import api
 from config import OWNER_USERNAME
-from shizuchat.modules.helpers.inline. import DEV_OP
+from shizuchat.modules.helpers.inline import DEV_OP
 
 x=None
 #blackbox
