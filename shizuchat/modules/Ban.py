@@ -541,14 +541,15 @@ async def mute(_, message: Message):
         return await message.reply_text(
             "I can't mute an admin, You know the rules, so do i."
         )
-        try:
-            mention= (await shizuchat.get_users(user_id)).mention
+    try:
+        mention = (await shizuchat.get_users(user_id)).mention
     except IndexError:
         mention = (
             message.reply_to_message.sender_chat.title
             if message.reply_to_message
             else "Anon"
-    )
+        )
+        
     msg = (
         f"**Muted User:** {mention}\n"
         f"**Muted By:** {message.from_user.mention if message.from_user else 'Anon'}\n"
