@@ -4,6 +4,7 @@ from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardMarkup
 import asyncio, time,requests
 from config import *
+from shizuchat.modules.helpers.inline. import DEV_OP
 from config import OWNER_USERNAME
 from BadAPI import api
 
@@ -22,7 +23,7 @@ async def bard_chat(bot, message):
         await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
         x=response["results"]
         
-        await message.reply_text(f"{x}\n\n🌸  ᴍᴀᴅᴇ ᴡɪᴛʜ ❣️ ʙʏ [ʙᴀᴅ ᴍᴜɴᴅᴀ](https://t.me/{OWNER_USERNAME}) ||",reply_markup=InlineKeyboardMarkup(gpt_button),quote=True)  
+        await message.reply_text(f"{x}\n\n🌸  ᴍᴀᴅᴇ ᴡɪᴛʜ ❣️ ʙʏ [ʙᴀᴅ ᴍᴜɴᴅᴀ](https://t.me/{OWNER_USERNAME}) ||",reply_markup=InlineKeyboardMarkup(DEV_OP),quote=True)  
 
     except requests.exceptions.RequestException as e:
         pass
