@@ -243,6 +243,16 @@ async def cleanmode_off(chat_id: int):
         cleanmode.append(chat_id)
         save_cleanmode()
 
+async def get_active_chats() -> list:
+    return active
+
+async def remove_active_chat(chat_id: int):
+    if chat_id in active:
+        active.remove(chat_id)
+
+async def remove_active_video_chat(chat_id: int):
+    if chat_id in activevideo:
+        activevideo.remove(chat_id)
 
 async def cleanmode_on(chat_id: int):
     if chat_id in cleanmode:
