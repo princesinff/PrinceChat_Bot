@@ -37,7 +37,7 @@ async def update(_, message: Message):
     os.system(to_exc)
     await asyncio.sleep(7)
     verification = ""
-    REPO_ = repo.remotes.origin.url.split(".git")[0]
+    UPSTREAM_REPO = repo.remotes.origin.url.split(".git")[0]
     for checks in repo.iter_commits(f"HEAD..origin/{config.UPSTREAM_BRANCH}"):
         verification = str(checks.count())
     if verification == "":
