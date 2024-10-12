@@ -1,5 +1,6 @@
 from os import getenv
 
+from pyrogram import filters
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,3 +20,6 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002056907061"))
 # --------------------------------------------------------------
 SUDOERS = list(map(int, getenv("SUDOERS", "7009601543").split()))
 # --------------------------------------------------------------
+
+### DONT TOUCH or EDIT codes after this line
+BANNED_USERS = filters.user()
