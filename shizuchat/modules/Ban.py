@@ -710,8 +710,8 @@ async def check_warns(_, message: Message):
 
 
 from pyrogram import filters
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
+from shizuchat import shizuchat
+from config import SUDOERS
 import asyncio
 from pyrogram.errors import FloodWait
 
@@ -782,7 +782,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UserAlreadyParticipant, InviteHashExpired
 
 # Create a bot instance
-from BADMUSIC import app 
+from shizuchat import shizuchat
 
 @shizuchat.on_message(
     filters.command(["unbanme"]))
