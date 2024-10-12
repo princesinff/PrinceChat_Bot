@@ -94,7 +94,7 @@ async def update(_, message: Message):
     except:
         pass
         return
-        except Exception as err:
+    except Exception as err:
             await response.edit(
                 f"{nrs.text}\n\nsᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ, ᴩʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʟᴏɢs."
             )
