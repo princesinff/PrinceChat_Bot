@@ -92,7 +92,7 @@ async def remove_warns(chat_id: int, name: str) -> bool:
     return False
 
 @shizuchat.on_message(
-    filters.command(["kick"]))
+    filters.command(["kick", "skick"]))
 @adminsOnly("can_restrict_members")
 async def kickFunc(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
@@ -132,7 +132,7 @@ async def kickFunc(_, message: Message):
 
 
 @shizuchat.on_message(
-    filters.command(["ban"]))
+    filters.command(["ban", "sban", "tban"]))
 @adminsOnly("can_restrict_members")
 async def banFunc(_, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -226,7 +226,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 
 
 @shizuchat.on_message(
-    filters.command(["promote"]))
+    filters.command(["promote", "fullpromote"]))
 @adminsOnly("can_promote_members")
 async def promoteFunc(_, message: Message):
     user_id = await extract_user(message)
@@ -503,7 +503,7 @@ async def callback_query_handler(_, query: CallbackQuery):
         )
 
 @shizuchat.on_message(
-    filters.command(["pin"]))
+    filters.command(["pin", "unpin"]))
 @adminsOnly("can_pin_messages")
 async def pin(_, message: Message):
     if not message.reply_to_message:
@@ -527,7 +527,7 @@ async def pin(_, message: Message):
 
 # Mute members
 @shizuchat.on_message(
-    filters.command(["mute"]))
+    filters.command(["mute", "tmute"]))
 @adminsOnly("can_restrict_members")
 async def mute(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
@@ -608,7 +608,7 @@ async def unmute(_, message: Message):
 
 
 @shizuchat.on_message(
-    filters.command(["warn"]))
+    filters.command(["warn", "swarn"]))
 @adminsOnly("can_restrict_members")
 async def warn_user(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
