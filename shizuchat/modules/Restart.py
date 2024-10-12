@@ -6,9 +6,9 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram import filters, Client
 from shizuchat import shizuchat
-from config import SUDOERS
+from config import SUDO_USERS
 
-@shizuchat.on_cmd(filters.command(["restart"]) & SUDOERS)
+@shizuchat.on_cmd(filters.command(["restart"]) & SUDO_USERS)
 async def restart(client: Client, message: Message):
     reply = await message.reply_text("**🔁 Rᴇsᴛᴀʀᴛɪɴɢ 🔥 ...**")
     await message.delete()
