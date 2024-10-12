@@ -234,11 +234,6 @@ async def mute_off(chat_id: int):
 
 # Delete command mode
 
-# Define file paths
-CLEANMODE_DB = os.path.join(config.TEMP_DB_FOLDER, "cleanmode.json")
-COMMAND_DB = os.path.join(config.TEMP_DB_FOLDER, "command.json")
-
-
 def load_cleanmode():
     if os.path.exists(CLEANMODE_DB):
         with open(CLEANMODE_DB, "r") as file:
@@ -335,27 +330,6 @@ async def remove_nonadmin_chat(chat_id: int):
     return await authdb.delete_one({"chat_id": chat_id})
 
 
-
-async def get_video_limit() -> str:
-    chat_id = 123456
-    if not vlimit:
-        dblimit = await videodb.find_one({"chat_id": chat_id})
-        if not dblimit:
-            limit = config.VIDEO_STREAM_LIMIT
-        else:
-            limit = dblimit["limit"]
-    else:
-        limit = vlimit[0]
-    return limit
-
-
-async def set_video_limit(limt: int):
-    chat_id = 123456
-    vlimit.clear()
-    vlimit.append(limt)
-    return await videodb.update_one(
-        {"chat_id": chat_id}, {"$set": {"limit": limt}}, upsert=True
-    )
 
 
 # On Off
