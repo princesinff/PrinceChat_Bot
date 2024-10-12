@@ -35,8 +35,8 @@ from shizuchat.database.pastebin import BADbin
 async def update(_, message: Message):
         if HAPP is None:
             return await message.reply_text(_["heroku_1"])
-    response = await message.reply_text(_["heroku_13"])
-    try:
+            response = await message.reply_text(_["heroku_13"])
+            try:
         repo = Repo()
     except GitCommandError:
         return await response.edit(_["heroku_14"])
