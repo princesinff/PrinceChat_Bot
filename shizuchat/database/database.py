@@ -234,34 +234,6 @@ async def mute_off(chat_id: int):
 
 # Delete command mode
 
-def load_cleanmode():
-    if os.path.exists(CLEANMODE_DB):
-        with open(CLEANMODE_DB, "r") as file:
-            return json.load(file)
-    return []
-
-
-def load_command():
-    if os.path.exists(COMMAND_DB):
-        with open(COMMAND_DB, "r") as file:
-            return json.load(file)
-    return []
-
-
-def save_cleanmode():
-    with open(CLEANMODE_DB, "w") as file:
-        json.dump(cleanmode, file)
-
-
-def save_command():
-    with open(COMMAND_DB, "w") as file:
-        json.dump(command, file)
-
-
-cleanmode = load_cleanmode()
-command = load_command()
-
-
 async def is_cleanmode_on(chat_id: int) -> bool:
     return chat_id not in cleanmode
 
