@@ -4,7 +4,7 @@ from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardMarkup
 import asyncio, time,requests
 from config import *
-from shizuchat.modules.helpers.inline. import DEV_OP
+from shizuchat.modules.helpers.inline import DEV_OP
 from config import OWNER_USERNAME
 from BadAPI import api
 
