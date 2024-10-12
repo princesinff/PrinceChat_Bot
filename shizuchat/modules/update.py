@@ -11,7 +11,9 @@ import requests
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
-from pyrogram import filters
+from pyrogram import Client, filters
+from pyrogram.enums import ChatAction
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 import config
 from config import OWNER_ID
