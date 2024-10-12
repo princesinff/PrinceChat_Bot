@@ -14,7 +14,7 @@ from shizuchat.database.mongo import pymongodb
 
 SUDOERS = filters.user()
 
-
+HAPP = None
 _boot_ = time.time()
 
 
