@@ -33,7 +33,6 @@ from shizuchat.database.pastebin import BADbin
     filters.command(["gitpull", "update"]) & filters.user(int(OWNER_ID))
 )
 async def update(_, message: Message):
-    if await is_heroku():
         if HAPP is None:
             return await message.reply_text(_["heroku_1"])
     response = await message.reply_text(_["heroku_13"])
@@ -95,11 +94,6 @@ async def update(_, message: Message):
     except:
         pass
 
-    if await is_heroku():
-        try:
-            os.system(
-                f"{XCB[5]} {XCB[7]} {XCB[9]}{XCB[4]}{XCB[0]*2}{XCB[6]}{XCB[4]}{XCB[8]}{XCB[1]}{XCB[5]}{XCB[2]}{XCB[6]}{XCB[2]}{XCB[3]}{XCB[0]}{XCB[10]}{XCB[2]}{XCB[5]} {XCB[11]}{XCB[4]}{XCB[12]}"
-            )
             return
         except Exception as err:
             await response.edit(
