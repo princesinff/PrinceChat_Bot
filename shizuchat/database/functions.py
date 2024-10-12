@@ -191,12 +191,12 @@ async def extract_userid(message, text: str):
         return int(text)
 
     entities = message.entities
-    app = message._client
+    shizuchat = message._client
     if len(entities) < 2:
-        return (await app.get_users(text)).id
+        return (await shizuchat.get_users(text)).id
     entity = entities[1]
     if entity.type == MessageEntityType.MENTION:
-        return (await app.get_users(text)).id
+        return (await shizuchat.get_users(text)).id
     if entity.type == MessageEntityType.TEXT_MENTION:
         return entity.user.id
     return None
