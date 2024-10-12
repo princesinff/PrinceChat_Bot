@@ -33,7 +33,7 @@ async def edit_or_reply(msg: Message, **kwargs):
 @shizuchat.on_message(
     filters.command(["eval"]) & filters.user(int(OWNER_ID))
 )
-async def executor(client: app, message: Message):
+async def executor(client: shizuchat, message: Message):
     if len(message.command) < 2:
         return await edit_or_reply(message, text="<b>ᴡʜᴀᴛ ʏᴏᴜ ᴡᴀɴɴᴀ ᴇxᴇᴄᴜᴛᴇ ʙᴀʙʏ ?</b>")
     try:
