@@ -18,7 +18,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import config
 from config import OWNER_ID
 from shizuchat import shizuchat
-from shizuchat.database.misc import XCB
+from shizuchat.database.misc import XCB, HAPP
 from shizuchat.database.database import (
     get_active_chats,
     remove_active_chat,
