@@ -11,7 +11,7 @@ from config import SUDOERS
 
 async def member_permissions(chat_id: int, user_id: int):
     perms = []
-    member = (await app.get_chat_member(chat_id, user_id)).privileges
+    member = (await shizuchat.get_chat_member(chat_id, user_id)).privileges
     if not member:
         return []
     if member.can_post_messages:
@@ -40,7 +40,7 @@ async def authorised(func, subFunc2, client, message, *args, **kwargs):
     try:
         await func(client, message, *args, **kwargs)
     except ChatWriteForbidden:
-        await app.leave_chat(chatID)
+        await shizuchat.leave_chat(chatID)
     except Exception as e:
         logging.exception(e)
         try:
@@ -69,13 +69,13 @@ async def unauthorised(
     try:
         await message.reply_text(text)
     except ChatWriteForbidden:
-        await app.leave_chat(chatID)
+        await shizuchat.leave_chat(chatID)
     return subFunc2
 
 
 async def bot_permissions(chat_id: int):
     perms = []
-    return await member_permissions(chat_id, app.id)
+    return await member_permissions(chat_id, shizuchat.id)
 
 
 def adminsOnly(permission):
