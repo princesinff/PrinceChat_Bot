@@ -30,7 +30,7 @@ from shizuchat.database.pastebin import BADbin
 
 
 @shizuchat.on_message(
-    filters.command(["gitpull"]) & filters.user(int(OWNER_ID))
+    filters.command(["gitpull", "update"]) & filters.user(int(OWNER_ID))
 )
 async def update_(client, message, _):
     if await is_heroku():
