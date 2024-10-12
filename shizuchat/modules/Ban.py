@@ -87,7 +87,7 @@ async def remove_warns(chat_id: int, name: str) -> bool:
     return False
 
 @shizuchat.on_message(
-    filters.command(["kick"])
+    filters.command(["kick"]))
 @adminsOnly("can_restrict_members")
 async def kickFunc(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
