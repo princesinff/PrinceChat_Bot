@@ -93,20 +93,20 @@ async def kickFunc(_, message: Message):
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
         return await message.reply_text("ɪ ᴄᴀɴ'ᴛ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ")
-    if user_id == app.id:
+    if user_id == shizuchat.id:
         return await message.reply_text("ɪ ᴄᴀɴ'ᴛ ᴋɪᴄᴋ ᴍʏsᴇʟғ, ɪ ᴄᴀɴ ʟᴇᴀᴠᴇ ɪғ ʏᴏᴜ ᴡᴀɴᴛ.")
     if user_id in SUDOERS:
         return await message.reply_text("ʏᴏᴜ ᴡᴀɴɴᴀ ᴋɪᴄᴋ ᴛʜᴇ ᴇʟᴇᴠᴀᴛᴇᴅ ᴏɴᴇ ?")
     if user_id in [
         member.user.id
-        async for member in app.get_chat_members(
+        async for member in shizuchat.get_chat_members(
             chat_id=message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
         )
     ]:
         return await message.reply_text(
             "ɪ ᴄᴀɴ'ᴛ ᴋɪᴄᴋ ᴀɴ ᴀᴅᴍɪɴ, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs, ʏᴏᴜ ᴋɴᴏᴡ ᴛʜᴇ ʀᴜʟᴇs, sᴏ ᴅᴏ ɪ "
         )
-    mention = (await app.get_users(user_id)).mention
+    mention = (await shizuchat.get_users(user_id)).mention
     msg = f"""
 **ᴋɪᴄᴋᴇᴅ ᴜsᴇʀ:** {mention}
 **ᴋɪᴄᴋᴇᴅ ʙʏ:** {message.from_user.mention if message.from_user else 'ᴀɴᴏɴᴍᴏᴜs'}
@@ -120,8 +120,8 @@ async def kickFunc(_, message: Message):
     await message.chat.unban_member(user_id)
     if message.command[0][0] == "s":
         await message.reply_to_message.delete()
-        await app.delete_user_history(message.chat.id, user_id)
-
+        await shizuchat.delete_user_history(message.chat.id, user_id)
+        
 
 # Ban members
 
