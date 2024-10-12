@@ -715,7 +715,7 @@ from config import SUDOERS
 import asyncio
 from pyrogram.errors import FloodWait
 
-BOT_ID = app.id
+BOT_ID = shizuchat.id
 
 async def ban_members(chat_id, user_id, bot_permission, total_members, msg):
     banned_count = 0
