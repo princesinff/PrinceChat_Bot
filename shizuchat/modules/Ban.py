@@ -28,6 +28,11 @@ from shizuchat.database.functions import (
 from shizuchat.database.permissions import adminsOnly, member_permissions
 from config import BANNED_USERS
 
+button = InlineKeyboardMarkup(
+        [[
+         InlineKeyboardButton(" ᴄʟᴏsᴇ ",callback_data="close_data")
+        ]])
+
 warnsdb = mongodb.warns
 
 async def int_to_alpha(user_id: int) -> str:
@@ -584,7 +589,7 @@ async def mute(_, message: Message):
     replied_message = message.reply_to_message
     if replied_message:
         message = replied_message
-    await message.reply_text(msg, reply_markup=keyboard)
+    await message.reply_text(msg, reply_markup=button)
 
 
 @shizuchat.on_message(
