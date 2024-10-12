@@ -33,15 +33,6 @@ from shizuchat.database.pastebin import BADbin
     filters.command(["gitpull", "update"]) & filters.user(int(OWNER_ID))
 )
 async def update(_, message: Message):
-    if HAPP is None:
-            return await message.reply_text(_["heroku_1"])
-    response = await message.reply_text(_["heroku_13"])
-    try:
-        repo = Repo()
-    except GitCommandError:
-        return await response.edit(_["heroku_14"])
-    except InvalidGitRepositoryError:
-        return await response.edit(_["heroku_15"])
     to_exc = f"git fetch origin {config.UPSTREAM_BRANCH} &> /dev/null"
     os.system(to_exc)
     await asyncio.sleep(7)
