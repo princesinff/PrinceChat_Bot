@@ -3,6 +3,7 @@ pyrogram==2.0.106
 pymongo
 motor
 heroku3
+gitpython
 requests
 dnspython
 tgcrypto==1.2.2
@@ -11,5 +12,6 @@ python-dotenv
 lexica-api
 deep-translator
 pycgi
+urllib3
 apscheduler
 git+https://github.com/badmunda98/BadAPI
