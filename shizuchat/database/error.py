@@ -32,7 +32,7 @@ def capture_err(func):
         try:
             return await func(client, message, *args, **kwargs)
         except ChatWriteForbidden:
-            await app.leave_chat(message.chat.id)
+            await shizuchat.leave_chat(message.chat.id)
             return
         except Exception as err:
             errors = traceback.format_exc()
@@ -53,7 +53,7 @@ def capture_err(func):
                 ),
             )
             for x in error_feedback:
-                await app.send_message(LOG_GROUP_ID, x)
+                await shizuchat.send_message(LOG_GROUP_ID, x)
             raise err
 
     return capture
