@@ -1,6 +1,6 @@
 from pyrogram import enums, filters
 
-from shizuchat import database
+from shizuchat import shizuchat
 from shizuchat.database.permissions import adminsOnly
 
 
