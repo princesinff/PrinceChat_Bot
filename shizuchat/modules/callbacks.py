@@ -2,7 +2,7 @@ import traceback
 from shizuchat import shizuchat
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
-from shizuchat.modules.generate import generate_session, ask_ques, buttons_ques
+from shizuchat.modules.session import generate_session, ask_ques, buttons_ques
 
 ERROR_MESSAGE = """ɪғ ʏᴏᴜ ᴀʀᴇ ɢᴇᴛᴛɪɴɢ ᴇʀʀᴏʀ!
 ʏᴏᴜ ʜᴀᴠᴇ ᴅᴏɴᴇ sᴏᴍᴇ ᴍɪsᴛᴀᴋᴇ ᴡʜɪʟᴇ ɢᴇɴᴇʀᴀᴛɪɴɢ.
