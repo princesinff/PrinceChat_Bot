@@ -12,12 +12,12 @@ async def deletechatphoto(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
     msg = await message.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ....**")
-    admin_check = await app.get_chat_member(chat_id, user_id)
+    admin_check = await shizuchat.get_chat_member(chat_id, user_id)
     if message.chat.type == enums.ChatType.PRIVATE:
         await msg.edit("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !**")
     try:
         if admin_check.privileges.can_change_info:
-            await app.delete_chat_photo(chat_id)
+            await shizuchat.delete_chat_photo(chat_id)
             await msg.edit(
                 "**ɢʀᴏᴜᴘs  ᴘʀᴏғɪʟᴇ ᴘʜᴏᴛᴏ ʀᴇᴍᴏᴠᴇᴅ  !\nʙʏ** {}".format(
                     message.from_user.mention
