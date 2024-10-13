@@ -78,8 +78,55 @@ CHATBOT_READ = f"""**
 
 SOURCE_READ = f"**ʜᴇʏ, ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏғ [{shizuchat.name}](https://t.me/{shizuchat.username}) ɪs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ.**\n**ᴘʟᴇᴀsᴇ ғᴏʀᴋ ᴛʜᴇ ʀᴇᴘᴏ & ɢɪᴠᴇ ᴛʜᴇ sᴛᴀʀ ✯**\n**──────────────────**\n**ʜᴇʀᴇ ɪs ᴛʜᴇ [sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ](https://github.com/Badhacker98/Chat_Bot/frok)**\n**──────────────────**\n**ɪғ ʏᴏᴜ ғᴀᴄᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ᴛʜᴇɴ ᴄᴏɴᴛᴀᴄᴛ ᴀᴛ [sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ](https://t.me/{SUPPORT_GRP}).\n<b>||©️ @{OWNER_USERNAME}||</b>"
 
-ADMIN_READ = f"๏ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ {shizuchat.mention}:
-"
+ADMIN_READ = f"""**
+๏ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ {shizuchat.mention}:
+
+➻ ᴜsᴇ /ban - Ban A User
+──────────────
+➻ ᴜsᴇ /sban - Delete all messages of user that sended in group and ban the user
+──────────────
+➻ ᴜsᴇ /tban - Ban A User For Specific Time
+──────────────
+➻ ᴜsᴇ /unban - Unban A User
+──────────────
+➻ ᴜsᴇ /warn - Warn A User
+──────────────
+➻ ᴜsᴇ /swarn - Delete all the message sended in group and warn the user
+──────────────
+➻ ᴜsᴇ /rmwarns - Remove All Warning of A User
+──────────────
+➻ ᴜsᴇ /warns - Show Warning Of A User
+──────────────
+➻ ᴜsᴇ /kick - Kick A User
+──────────────
+➻ ᴜsᴇ /skick - Delete the replied message kicking its sender
+──────────────
+➻ ᴜsᴇ /purge - Purge Messages
+──────────────
+➻ ᴜsᴇ /purge [n] - Purge "n" number of messages from replied message
+──────────────
+➻ ᴜsᴇ /del - Delete Replied Message
+──────────────
+➻ ᴜsᴇ /promote - Promote A Member
+──────────────
+➻ ᴜsᴇ /fullpromote - Promote A Member With All Rights
+──────────────
+➻ ᴜsᴇ /demote - Demote A Member
+──────────────
+➻ ᴜsᴇ /pin - Pin A Message
+──────────────
+➻ ᴜsᴇ /unpin - unpin a message
+──────────────
+➻ ᴜsᴇ /unpinall - unpinall messages
+──────────────
+➻ ᴜsᴇ /mute - Mute A User
+──────────────
+➻ ᴜsᴇ /tmute - Mute A User For Specific Time
+──────────────
+➻ ᴜsᴇ /unmute - Unmute A User
+──────────────
+๏ ᴍᴀᴅᴇ ʙʏ ➪ [ʙᴀᴅ ✯ ᴍᴜɴᴅᴀ](https://t.me/ll_BAD_MUNDA_ll) 💞**
+"""
 
 ABOUT_READ = f"""
 **➻ [{shizuchat.name}](https://t.me/{shizuchat.username}) ɪs ᴀɴ ᴀɪ ʙᴀsᴇᴅ ᴄʜᴀᴛ-ʙᴏᴛ.**
