@@ -12,6 +12,7 @@ python-dotenv
 lexica-api
 deep-translator
 pycgi
+telethon==1.26.1
 urllib3
 apscheduler
 git+https://github.com/badmunda98/BadAPI
