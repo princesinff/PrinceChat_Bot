@@ -74,7 +74,7 @@ async def setgrouptitle(_, message):
     elif reply:
         try:
             title = message.reply_to_message.text
-            admin_check = await app.get_chat_member(chat_id, user_id)
+            admin_check = await shizuchat.get_chat_member(chat_id, user_id)
             if admin_check.privileges.can_change_info:
                 await message.chat.set_title(title)
                 await msg.edit(
@@ -121,7 +121,7 @@ async def setg_discription(_, message):
     elif reply:
         try:
             discription = message.reply_to_message.text
-            admin_check = await app.get_chat_member(chat_id, user_id)
+            admin_check = await shizuchat.get_chat_member(chat_id, user_id)
             if admin_check.privileges.can_change_info:
                 await message.chat.set_description(discription)
                 await msg.edit(
@@ -136,7 +136,7 @@ async def setg_discription(_, message):
     elif len(message.command) > 1:
         try:
             discription = message.text.split(None, 1)[1]
-            admin_check = await app.get_chat_member(chat_id, user_id)
+            admin_check = await shizuchat.get_chat_member(chat_id, user_id)
             if admin_check.privileges.can_change_info:
                 await message.chat.set_description(discription)
                 await msg.edit(
