@@ -89,7 +89,7 @@ async def setgrouptitle(_, message):
     elif len(message.command) > 1:
         try:
             title = message.text.split(None, 1)[1]
-            admin_check = await app.get_chat_member(chat_id, user_id)
+            admin_check = await shizuchat.get_chat_member(chat_id, user_id)
             if admin_check.privileges.can_change_info:
                 await message.chat.set_title(title)
                 await msg.edit(
