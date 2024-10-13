@@ -37,7 +37,7 @@ async def setchatphoto(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
     msg = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
-    admin_check = await app.get_chat_member(chat_id, user_id)
+    admin_check = await shizuchat.get_chat_member(chat_id, user_id)
     if message.chat.type == enums.ChatType.PRIVATE:
         await msg.edit("`ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !`")
     elif not reply:
