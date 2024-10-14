@@ -57,6 +57,12 @@ PNG_BTN = [
 ]
 
 
+NEXT = [
+    [
+        InlineKeyboardButton(text="⦿ ɴᴇxᴛ ⦿", callback_data="ADMIN_READ2"),
+    ],
+]
+
 BACK = [
     [
         InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="BACK"),
