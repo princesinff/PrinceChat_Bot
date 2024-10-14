@@ -17,6 +17,7 @@ from shizuchat.modules.helpers import (
     ABOUT_BTN,
     ABOUT_READ,
     ADMIN_READ,
+    ADMIN_READ2,
     BACK,
     CHATBOT_BACK,
     CHATBOT_READ,
