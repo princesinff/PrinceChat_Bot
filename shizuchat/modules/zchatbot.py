@@ -19,6 +19,7 @@ from shizuchat.modules.helpers import (
     ADMIN_READ,
     ADMIN_READ2,
     BACK,
+    NEXT,
     CHATBOT_BACK,
     CHATBOT_READ,
     DEV_OP,
@@ -324,7 +325,7 @@ async def cb_handler(_, query: CallbackQuery):
     elif query.data == "ADMIN_READ2":
         await query.message.edit(
             text=ADMIN_READ2,
-            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
+            reply_markup=InlineKeyboardMarkup(NEXT),
         )
         
     elif query.data == "TOOLS_DATA":
