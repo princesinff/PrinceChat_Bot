@@ -320,6 +320,13 @@ async def cb_handler(_, query: CallbackQuery):
             text=AIBOT_READ,
             reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
         )
+
+    elif query.data == "ADMIN_READ2":
+        await query.message.edit(
+            text=ADMIN_READ2,
+            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
+        )
+        
     elif query.data == "TOOLS_DATA":
         await query.message.edit(
             text=TOOLS_DATA_READ,
