@@ -14,5 +14,6 @@ deep-translator
 pycgi
 telethon==1.26.1
 urllib3
+oldpyro==0.1.0
 apscheduler
 git+https://github.com/badmunda98/BadAPI
