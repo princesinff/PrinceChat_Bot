@@ -85,27 +85,28 @@ SOURCE_READ = f"**ʜᴇʏ, ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏғ [{shizuch
 
 ADMIN_READ2 = f"""**
 ๏ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ {shizuchat.mention}:
-➻ ᴜsᴇ /purge [n] - Purge "n" number of messages from replied message
+
+➻ ᴜsᴇ /purge [n] - ᴘᴜʀɢᴇ "ɴ" ɴᴜᴍʙᴇʀ ᴏꜰ ᴍᴇꜱꜱᴀɢᴇꜱ ꜰʀᴏᴍ ʀᴇᴘʟɪᴇᴅ ᴍᴇꜱꜱᴀɢᴇ .
 ──────────────
-➻ ᴜsᴇ /del - Delete Replied Message
+➻ ᴜsᴇ /del - ᴅᴇʟᴇᴛᴇ ʀᴇᴘʟɪᴇᴅ ᴍᴇꜱꜱᴀɢᴇ .
 ──────────────
-➻ ᴜsᴇ /promote - Promote A Member
+➻ ᴜsᴇ /promote - ᴘʀᴏᴍᴏᴛᴇ ᴀ ᴍᴇᴍʙᴇʀ .
 ──────────────
-➻ ᴜsᴇ /fullpromote - Promote A Member With All Rights
+➻ ᴜsᴇ /fullpromote - ᴘʀᴏᴍᴏᴛᴇ ᴀ ᴍᴇᴍʙᴇʀ ᴡɪᴛʜ ᴀʟʟ ʀɪɢʜᴛꜱ .
 ──────────────
-➻ ᴜsᴇ /demote - Demote A Member
+➻ ᴜsᴇ /demote - ᴅᴇᴍᴏᴛᴇ ᴀ ᴍᴇᴍʙᴇʀ .
 ──────────────
-➻ ᴜsᴇ /pin - Pin A Message
+➻ ᴜsᴇ /pin - ᴘɪɴ ᴀ ᴍᴇꜱꜱᴀɢᴇ .
 ──────────────
-➻ ᴜsᴇ /unpin - unpin a message
+➻ ᴜsᴇ /unpin - ᴜɴᴘɪɴ ᴀ ᴍᴇꜱꜱᴀɢᴇ .
 ──────────────
-➻ ᴜsᴇ /unpinall - unpinall messages
+➻ ᴜsᴇ /unpinall - ᴜɴᴘɪɴᴀʟʟ ᴍᴇꜱꜱᴀɢᴇꜱ .
 ──────────────
-➻ ᴜsᴇ /mute - Mute A User
+➻ ᴜsᴇ /mute - ᴍᴜᴛᴇ ᴀ ᴜꜱᴇʀ .
 ──────────────
-➻ ᴜsᴇ /tmute - Mute A User For Specific Time
+➻ ᴜsᴇ /tmute - ᴍᴜᴛᴇ ᴀ ᴜꜱᴇʀ ꜰᴏʀ ꜱᴘᴇᴄɪꜰɪᴄ ᴛɪᴍᴇ.
 ──────────────
-➻ ᴜsᴇ /unmute - Unmute A User
+➻ ᴜsᴇ /unmute - ᴜɴᴍᴜᴛᴇ ᴀ ᴜꜱᴇʀ .
 ──────────────
 ๏ ᴍᴀᴅᴇ ʙʏ ➪ [ʙᴀᴅ ✯ ᴍᴜɴᴅᴀ](https://t.me/ll_BAD_MUNDA_ll) 💞**
 """
