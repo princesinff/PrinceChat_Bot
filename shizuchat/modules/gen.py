@@ -1,7 +1,7 @@
 import asyncio
 
 from pyrogram import Client, filters
-from oldpyro import Client as Client1
+from pyrogram import Client as Client1
 from oldpyro.errors import ApiIdInvalid as ApiIdInvalid1
 from oldpyro.errors import PasswordHashInvalid as PasswordHashInvalid1
 from oldpyro.errors import PhoneCodeExpired as PhoneCodeExpired1
