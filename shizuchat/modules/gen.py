@@ -33,7 +33,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 
 from config import SUPPORT_GRP
 from shizuchat import shizuchat
-from StringBot.utils import retry_key
+from StringBot.modules import retry_key
 
 
 # BUTTON
