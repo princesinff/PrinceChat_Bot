@@ -7,7 +7,7 @@ keyboard = InlineKeyboardMarkup(
     [
         [InlineKeyboardButton(text="💢 ɢᴇɴᴇʀᴀᴛᴇ sᴇssɪᴏɴ 💢", callback_data="gensession")],
         [
-            InlineKeyboardButton(text="📂 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 📂", url=SUPPORT_CHAT),
+            InlineKeyboardButton(text="📂 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 📂", url=SUPPORT_GRP),
             InlineKeyboardButton(
                 text="📌sᴏᴜʀᴄᴇ ", url="https://github.com/Badhacker98/StringBot"
             ),
