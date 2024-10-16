@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from shizuchat import shizuchat
-from shizuchat.modules.button import keyboard
+from shizuchat.modules.helpers.button import keyboard
 
 
 @shizuchat.on_cmd(["gen"])
