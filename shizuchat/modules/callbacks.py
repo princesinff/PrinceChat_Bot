@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import CallbackQuery
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 
 from shizuchat import shizuchat
 from shizuchat.modules.helpers.button import gen_key
