@@ -5,12 +5,14 @@ from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from deep_translator import GoogleTranslator 
 from config import MONGO_URL
-from shizuchat import shizuchat
+from shizuchat import shizuchat, mongo, db
+from pyrogram.types import Message
 from shizuchat.modules.helpers import CHATBOT_ON
 from pymongo import MongoClient
+from shizuchat import mongo
 from pyrogram.enums import ChatMemberStatus as CMS
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
-
+import asyncio
 import config
 from shizuchat import LOGGER, shizuchat
 from shizuchat.modules.helpers import (
@@ -33,14 +35,35 @@ from shizuchat.modules.helpers import (
     AIBOT_READ,
 )
 
-WORD_MONGO_URL = "mongodb+srv://BADMUNDA:BADMYDAD@badhacker.i5nw9na.mongodb.net/"
 translator = GoogleTranslator()  
-chatdb = MongoClient(MONGO_URL)
-worddb = MongoClient(WORD_MONGO_URL)
-status_db = chatdb["ChatBotStatusDb"]["StatusCollection"]
-chatai = worddb["Word"]["WordDb"]
-lang_db = chatdb["ChatLangDb"]["LangCollection"]
+"""#chatdb = MongoClient(MONGO_URL)
+#status_db = chatdb["ChatBotStatusDb"]["StatusCollection"]
+chatai = mongo["Word"]["WordDb"]
+lang_db = mongo["ChatLangDb"]["LangCollection"]
+status_db = mongo.chatbot_status_db.status
+"""
+from shizuchat import db
 
+# Simplified access to each collection in a consistent way
+chatai = db.Word.WordDb
+lang_db = db.ChatLangDb.LangCollection
+status_db = db.chatbot_status_db.status
+
+@shizuchat.on_message(filters.command("status"))
+async def status_command(client: Client, message: Message):
+    chat_id = message.chat.id
+
+    # Retrieve the status for the given chat_id
+    chat_status = await status_db.find_one({"chat_id": chat_id})
+
+    # Check if a status was found
+    if chat_status:
+        current_status = chat_status.get("status", "not found")
+        await message.reply(f"Chatbot status for this chat: **{current_status}**")
+    else:
+        await message.reply("No status found for this chat.")
+
+# Example usage of Client
 
 languages = {
     # Top 20 languages used on Telegram
@@ -93,195 +116,81 @@ languages = {
 }
 
 
+
 def generate_language_buttons(languages):
     buttons = []
     current_row = []
     for lang, code in languages.items():
         current_row.append(InlineKeyboardButton(lang.capitalize(), callback_data=f'setlang_{code}'))
-        if len(current_row) == 4:  
+        if len(current_row) == 4:
             buttons.append(current_row)
-            current_row = []  
-    if current_row:  
+            current_row = []
+    if current_row:
         buttons.append(current_row)
     return InlineKeyboardMarkup(buttons)
 
-def get_chat_language(chat_id):
-    chat_lang = lang_db.find_one({"chat_id": chat_id})
+async def get_chat_language(chat_id):
+    # Await the async call to find_one
+    chat_lang = await lang_db.find_one({"chat_id": chat_id})
     return chat_lang["language"] if chat_lang and "language" in chat_lang else None
+    
+@shizuchat.on_message(filters.command(["lang", "language", "setlang"]))
+async def set_language(client: Client, message: Message):
+    await message.reply_text(
+        "Please select your chat language:",
+        reply_markup=generate_language_buttons(languages)
+    )
+
+
+@shizuchat.on_callback_query(filters.regex(r"setlang_"))
+async def language_selection_callback(client: Client, callback_query: CallbackQuery):
+    lang_code = callback_query.data.split("_")[1]
+    chat_id = callback_query.message.chat.id
+    if lang_code in languages.values():
+        lang_db.update_one({"chat_id": chat_id}, {"$set": {"language": lang_code}}, upsert=True)
+        await callback_query.answer(f"Your chat language has been set to {lang_code.title()}.", show_alert=True)
+        await callback_query.message.edit_text(f"Chat language has been set to {lang_code.title()}.")
+    else:
+        await callback_query.answer("Invalid language selection.", show_alert=True)
+
+
+
+@shizuchat.on_message(filters.command("status"))
+async def status_command(client: Client, message: Message):
+    chat_id = message.chat.id
+
+    # Retrieve the status for the given chat_id
+    chat_status = await status_db.find_one({"chat_id": chat_id})
+
+    # Check if a status was found
+    if chat_status:
+        current_status = chat_status.get("status", "not found")
+        await message.reply(f"Chatbot status for this chat: **{current_status}**")
+    else:
+        await message.reply("No status found for this chat.")
 
 
 @shizuchat.on_message(filters.command(["lang", "language", "setlang"]))
 async def set_language(client: Client, message: Message):
     await message.reply_text(
-        "ᴘʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ʏᴏᴜʀ ᴄʜᴀᴛ ʟᴀɴɢᴜᴀɢᴇ:",
-        reply_markup=generate_language_buttons(languages))
+        "Please select your chat language:",
+        reply_markup=generate_language_buttons(languages)
+    )
 
-
-@shizuchat.on_callback_query(filters.regex(r"setlang_"))
-async def language_selection_callback(client: Client, callback_query):
-    lang_code = callback_query.data.split("_")[1]
-    chat_id = callback_query.message.chat.id
-    if lang_code in languages.values():  # Ensure lang_code is valid
-        lang_db.update_one({"chat_id": chat_id}, {"$set": {"language": lang_code}}, upsert=True)
-        await callback_query.answer(f"ʏᴏᴜʀ ᴄʜᴀᴛ ʟᴀɴɢᴜᴀɢᴇ ʜᴀs ʙᴇᴇɴ sᴇᴛ ᴛᴏ {lang_code.title()}.", show_alert=True)
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"sᴇʟᴇᴄᴛ ʟᴀɴɢᴜᴀɢᴇ", callback_data="choose_lang")]])
-        await callback_query.message.edit_text(f"ʏᴏᴜʀ ᴄʜᴀᴛ ʟᴀɴɢᴜᴀɢᴇ ʜᴀs ʙᴇᴇɴ sᴇᴛ ᴛᴏ {lang_code.title()}.", reply_markup=reply_markup)
-    else:
-        await callback_query.answer("Invalid language selection.", show_alert=True)
 
 @shizuchat.on_message(filters.command(["resetlang", "nolang"]))
-async def set_language(client: Client, message: Message):
+async def reset_language(client: Client, message: Message):
     chat_id = message.chat.id
     lang_db.update_one({"chat_id": chat_id}, {"$set": {"language": "nolang"}}, upsert=True)
-    await message.reply_text(f"**Bot language has been reset in this chat, now mix language is using.**")
+    await message.reply_text("**Bot language has been reset in this chat to mix language.**")
 
 
-@shizuchat.on_callback_query(filters.regex("nolang"))
-async def language_selection_callback(client: Client, callback_query):
-    chat_id = callback_query.message.chat.id
-    lang_db.update_one({"chat_id": chat_id}, {"$set": {"language": "nolang"}}, upsert=True)
-    await callback_query.answer("Bot language has been reset in this chat, now mix language is using.", show_alert=True)
-    await callback_query.message.edit_text(f"**Bot language has been reset in this chat, now mix language is using.**")
-
-@shizuchat.on_callback_query(filters.regex("choose_lang"))
-async def language_selection_callback(client: Client, callback_query):
-    chat_id = callback_query.message.chat.id
-    await callback_query.answer("Choose chatbot language for this chat.", show_alert=True)
-    await callback_query.message.edit_text(f"**Bot language has been reset in this chat, now mix language is using.**", reply_markup=generate_language_buttons(languages))
-    
 @shizuchat.on_message(filters.command("chatbot"))
-async def chaton(client: Client, message: Message):
+async def chatbot_command(client: Client, message: Message):
     await message.reply_text(
-        f"ᴄʜᴀᴛ: {message.chat.title}\n**ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴘᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.**",
+        f"Chat: {message.chat.title}\n**Choose an option to enable/disable the chatbot.**",
         reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
     )
-    
-@shizuchat.on_message((filters.text | filters.sticker | filters.photo | filters.video | filters.audio))
-async def chatbot_response(client: Client, message: Message):
-    chat_status = status_db.find_one({"chat_id": message.chat.id})
-    if chat_status and chat_status.get("status") == "disabled":
-        return
-
-    if message.text:
-        if any(message.text.startswith(prefix) for prefix in ["!", "/", ".", "?", "@", "#"]):
-            return
-
-    if (message.reply_to_message and message.reply_to_message.from_user.id == client.me.id) or not message.reply_to_message:
-        await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-
-        reply_data = await get_reply(message.text if message.text else "")
-        
-        if reply_data:
-            response_text = reply_data["text"]
-            chat_lang = get_chat_language(message.chat.id)
-
-            
-            if not chat_lang or chat_lang == "nolang":
-                translated_text = response_text  
-            else:
-                translated_text = GoogleTranslator(source='auto', target=chat_lang).translate(response_text)
-            if reply_data["check"] == "sticker":
-                await message.reply_sticker(reply_data["text"])
-            elif reply_data["check"] == "photo":
-                await message.reply_photo(reply_data["text"])
-            elif reply_data["check"] == "video":
-                await message.reply_video(reply_data["text"])
-            elif reply_data["check"] == "audio":
-                await message.reply_audio(reply_data["text"])
-            else:
-                await message.reply_text(translated_text)
-        else:
-            await message.reply_text("**what??**")
-
-    if message.reply_to_message:
-        await save_reply(message.reply_to_message, message)
-
-async def save_reply(original_message: Message, reply_message: Message):
-    if reply_message.sticker:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.sticker.file_id,
-                "check": "sticker",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.sticker.file_id,
-                    "check": "sticker",
-                }
-            )
-    elif reply_message.photo:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.photo.file_id,
-                "check": "photo",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.photo.file_id,
-                    "check": "photo",
-                }
-            )
-    elif reply_message.video:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.video.file_id,
-                "check": "video",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.video.file_id,
-                    "check": "video",
-                }
-            )
-    elif reply_message.audio:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.audio.file_id,
-                "check": "audio",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.audio.file_id,
-                    "check": "audio",
-                }
-            )
-    elif reply_message.text:
-        is_chat = chatai.find_one(
-            {"word": original_message.text, "text": reply_message.text}
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.text,
-                    "check": "none",
-                }
-            )
-
-async def get_reply(word: str):
-    is_chat = list(chatai.find({"word": word}))
-    if not is_chat:
-        is_chat = list(chatai.find())
-    if is_chat:
-        random_reply = random.choice(is_chat)
-        return random_reply
-    return None
 
 @shizuchat.on_callback_query()
 async def cb_handler(_, query: CallbackQuery):
@@ -354,22 +263,188 @@ async def cb_handler(_, query: CallbackQuery):
             text=HELP_READ,
             reply_markup=InlineKeyboardMarkup(HELP_BTN),
         )
-
+    # Enable chatbot for the chat
     elif query.data == "enable_chatbot":
         chat_id = query.message.chat.id
-        action = query.data
-        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "enabled"}})
+        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "enabled"}}, upsert=True)
         await query.answer("Chatbot enabled ✅", show_alert=True)
         await query.edit_message_text(
-            f"ᴄʜᴀᴛ: {query.message.chat.title}\n**ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴇɴᴀʙʟᴇᴅ.**"
+            f"Chat: {query.message.chat.title}\n**Chatbot has been enabled.**"
         )
 
+    # Disable chatbot for the chat
     elif query.data == "disable_chatbot":
         chat_id = query.message.chat.id
-        action = query.data
-        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "disabled"}})
+        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "disabled"}}, upsert=True)
         await query.answer("Chatbot disabled!", show_alert=True)
         await query.edit_message_text(
-            f"ᴄʜᴀᴛ: {query.message.chat.title}\n**ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴅɪsᴀʙʟᴇᴅ.**"
+            f"Chat: {query.message.chat.title}\n**Chatbot has been disabled.**"
         )
 
+    # Set chat language
+    elif query.data.startswith("setlang_"):
+        lang_code = query.data.split("_")[1]
+        chat_id = query.message.chat.id
+        if lang_code in languages.values():
+            lang_db.update_one({"chat_id": chat_id}, {"$set": {"language": lang_code}}, upsert=True)
+            await query.answer(f"Your chat language has been set to {lang_code.title()}.", show_alert=True)
+            await query.message.edit_text(f"Chat language has been set to {lang_code.title()}.")
+        else:
+            await query.answer("Invalid language selection.", show_alert=True)
+
+    # Reset language selection to mix language
+    elif query.data == "nolang":
+        chat_id = query.message.chat.id
+        lang_db.update_one({"chat_id": chat_id}, {"$set": {"language": "nolang"}}, upsert=True)
+        await query.answer("Bot language has been reset to mix language.", show_alert=True)
+        await query.message.edit_text("**Bot language has been reset to mix language.**")
+
+    # Choose language for the chatbot
+    elif query.data == "choose_lang":
+        await query.answer("Choose chatbot language for this chat.", show_alert=True)
+        await query.message.edit_text(
+            "**Please select your preferred language for the chatbot.**",
+            reply_markup=generate_language_buttons(languages)
+        )
+
+
+
+        
+@shizuchat.on_message(filters.incoming)
+async def chatbot_response(client: Client, message: Message):
+    try:
+        chat_id = message.chat.id
+        chat_status = await status_db.find_one({"chat_id": chat_id})
+        
+        if chat_status and chat_status.get("status") == "disabled":
+            return
+
+        if message.text and any(message.text.startswith(prefix) for prefix in ["!", "/", ".", "?", "@", "#"]):
+            return
+        
+        if (message.reply_to_message and message.reply_to_message.from_user.id == shizuchat.id) or not message.reply_to_message:
+            await client.send_chat_action(message.chat.id, ChatAction.TYPING)
+            reply_data = await get_reply(message.text)
+
+            if reply_data:
+                response_text = reply_data["text"]
+                chat_lang = await get_chat_language(chat_id)
+
+                if not chat_lang or chat_lang == "nolang":
+                    translated_text = response_text
+                else:
+                    translated_text = GoogleTranslator(source='auto', target=chat_lang).translate(response_text)
+                
+                if reply_data["check"] == "sticker":
+                    await message.reply_sticker(reply_data["text"])
+                elif reply_data["check"] == "photo":
+                    await message.reply_photo(reply_data["text"])
+                elif reply_data["check"] == "video":
+                    await message.reply_video(reply_data["text"])
+                elif reply_data["check"] == "audio":
+                    await message.reply_audio(reply_data["text"])
+                elif reply_data["check"] == "gif":
+                    await message.reply_animation(reply_data["text"]) 
+                else:
+                    await message.reply_text(translated_text)
+            else:
+                await message.reply_text("I don't understand.")
+        
+        if message.reply_to_message:
+            await save_reply(message.reply_to_message, message)
+
+    except Exception as e:
+        print(f"Error in chatbot_response: {e}")
+
+async def save_reply(original_message: Message, reply_message: Message):
+    try:
+        if reply_message.sticker:
+            is_chat = await chatai.find_one({
+                "word": original_message.text,
+                "text": reply_message.sticker.file_id,
+                "check": "sticker",
+            })
+            if not is_chat:
+                await chatai.insert_one({
+                    "word": original_message.text,
+                    "text": reply_message.sticker.file_id,
+                    "check": "sticker",
+                })
+
+        elif reply_message.photo:
+            is_chat = await chatai.find_one({
+                "word": original_message.text,
+                "text": reply_message.photo.file_id,
+                "check": "photo",
+            })
+            if not is_chat:
+                await chatai.insert_one({
+                    "word": original_message.text,
+                    "text": reply_message.photo.file_id,
+                    "check": "photo",
+                })
+
+        elif reply_message.video:
+            is_chat = await chatai.find_one({
+                "word": original_message.text,
+                "text": reply_message.video.file_id,
+                "check": "video",
+            })
+            if not is_chat:
+                await chatai.insert_one({
+                    "word": original_message.text,
+                    "text": reply_message.video.file_id,
+                    "check": "video",
+                })
+
+        elif reply_message.audio:
+            is_chat = await chatai.find_one({
+                "word": original_message.text,
+                "text": reply_message.audio.file_id,
+                "check": "audio",
+            })
+            if not is_chat:
+                await chatai.insert_one({
+                    "word": original_message.text,
+                    "text": reply_message.audio.file_id,
+                    "check": "audio",
+                })
+
+        elif reply_message.animation:  
+            is_chat = await chatai.find_one({
+                "word": original_message.text,
+                "text": reply_message.animation.file_id,
+                "check": "gif",
+            })
+            if not is_chat:
+                await chatai.insert_one({
+                    "word": original_message.text,
+                    "text": reply_message.animation.file_id,
+                    "check": "gif",
+                })
+
+        elif reply_message.text:
+            is_chat = await chatai.find_one({
+                "word": original_message.text,
+                "text": reply_message.text,
+                "check": "none",
+            })
+            if not is_chat:
+                await chatai.insert_one({
+                    "word": original_message.text,
+                    "text": reply_message.text,
+                    "check": "none",
+                })
+
+    except Exception as e:
+        print(f"Error in save_reply: {e}")
+
+async def get_reply(word: str):
+    try:
+        is_chat = await chatai.find({"word": word}).to_list(length=None)
+        if not is_chat:
+            is_chat = await chatai.find().to_list(length=None)
+        return random.choice(is_chat) if is_chat else None
+    except Exception as e:
+        print(f"Error in get_reply: {e}")
+        return None
