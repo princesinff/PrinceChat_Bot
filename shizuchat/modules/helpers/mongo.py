@@ -11,6 +11,7 @@ if MONGO_URL != None:
     usersdb = db.users
     blockeddb = db.block
     modedb = db.mode
+    filtersdb = db.filters
     modelist = {}
 
     # Served Users
