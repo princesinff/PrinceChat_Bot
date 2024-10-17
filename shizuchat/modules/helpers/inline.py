@@ -72,6 +72,9 @@ BACK = [
 
 
 HELP_BTN = [
+        [
+        InlineKeyboardButton(text="🐳 ᴅᴇᴠ 🐳", callback_data="OWNER"),
+    ],
     [
         InlineKeyboardButton(text="💫 ᴀᴅᴍɪɴs 💫", callback_data="ADMINS"),
         InlineKeyboardButton(text="🐳 ᴄʜᴀᴛʙᴏᴛ 🐳", callback_data="CHATBOT_CMD"),
