@@ -124,21 +124,21 @@ ADMIN_READ2 = f"""**
 ADMIN_READ = f"""**
 ๏ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ {shizuchat.mention}:
 
-➻ ᴜsᴇ /ban - Ban A User
+➻ ᴜsᴇ /ban - ʙᴀɴ ᴀ ᴜꜱᴇʀ .
 ──────────────
-➻ ᴜsᴇ /sban - Delete all messages of user that sended in group and ban the user
+➻ ᴜsᴇ /sban - ᴅᴇʟᴇᴛᴇ ᴀʟʟ ᴍᴇꜱꜱᴀɢᴇꜱ ᴏꜰ ᴜꜱᴇʀ ᴛʜᴀᴛ ꜱᴇɴᴅᴇᴅ ɪɴ ɢʀᴏᴜᴘ ᴀɴᴅ ʙᴀɴ ᴛʜᴇ ᴜꜱᴇʀ .
 ──────────────
-➻ ᴜsᴇ /tban - Ban A User For Specific Time
+➻ ᴜsᴇ /tban - ʙᴀɴ ᴀ ᴜꜱᴇʀ ꜰᴏʀ ꜱᴘᴇᴄɪꜰɪᴄ ᴛɪᴍᴇ .
 ──────────────
-➻ ᴜsᴇ /unban - Unban A User
+➻ ᴜsᴇ /unban - ᴜɴʙᴀɴ ᴀ ᴜꜱᴇʀ .
 ──────────────
-➻ ᴜsᴇ /warn - Warn A User
+➻ ᴜsᴇ /warn - ᴡᴀʀɴ ᴀ ᴜꜱᴇʀ .
 ──────────────
-➻ ᴜsᴇ /swarn - Delete all the message sended in group and warn the user
+➻ ᴜsᴇ /swarn - ᴅᴇʟᴇᴛᴇ ᴀʟʟ ᴛʜᴇ ᴍᴇꜱꜱᴀɢᴇ ꜱᴇɴᴅᴇᴅ ɪɴ ɢʀᴏᴜᴘ ᴀɴᴅ ᴡᴀʀɴ ᴛʜᴇ ᴜꜱᴇʀ .
 ──────────────
-➻ ᴜsᴇ /rmwarns - Remove All Warning of A User
+➻ ᴜsᴇ /rmwarns - ʀᴇᴍᴏᴠᴇ ᴀʟʟ ᴡᴀʀɴɪɴɢ ᴏꜰ ᴀ ᴜꜱᴇʀ .
 ──────────────
-➻ ᴜsᴇ /warns - Show Warning Of A User
+➻ ᴜsᴇ /warns - ꜱʜᴏᴡ ᴡᴀʀɴɪɴɢ ᴏꜰ ᴀ ᴜꜱᴇʀ .
 ──────────────
 ๏ ᴍᴀᴅᴇ ʙʏ ➪ [ʙᴀᴅ ✯ ᴍᴜɴᴅᴀ](https://t.me/ll_BAD_MUNDA_ll) 💞**
 """
