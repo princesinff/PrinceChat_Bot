@@ -312,6 +312,11 @@ async def cb_handler(_, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(ABOUT_BTN),
             disable_web_page_preview=True,
         )
+    elif query.data == "OWNER":
+        await query.message.edit(
+            text=OWNER,
+            reply_markup=InlineKeyboardMarkup(NEXT),
+        )
     elif query.data == "ADMINS":
         await query.message.edit(
             text=ADMIN_READ,
