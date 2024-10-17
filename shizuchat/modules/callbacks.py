@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import CallbackQuery
 
 from shizuchat import shizuchat
-from shizuchat.modules.Gen import gen_key
+from shizuchat.modules.helpers.button import gen_key
 from shizuchat.modules.Gen import gen_session
 
 
