@@ -16,6 +16,7 @@ from shizuchat import LOGGER, shizuchat
 from shizuchat.modules.helpers import (
     ABOUT_BTN,
     ABOUT_READ,
+    OWNER,
     ADMIN_READ,
     ADMIN_READ2,
     BACK,
