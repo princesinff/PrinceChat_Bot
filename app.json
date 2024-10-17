@@ -25,7 +25,7 @@
     },
     "DEEP_API": {
       "description": "Your DEEP API https://deepai.org/",
-      "required": true,
+      "required": false,
       "value": "d85ba1ac-4443-4e17-a4c9-d2ebf5ccfa3d"
     },
     "MONGO_URL": {
