@@ -33,7 +33,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 
 from config import SUPPORT_GRP
 from shizuchat import shizuchat
-from shizuchat.modules.helpers import retry_key
+from shizuchat.modules.helpers.button import retry_key
 
 
 async def gen_session(
