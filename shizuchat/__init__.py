@@ -1,12 +1,14 @@
 import logging
 import time
-
+from pymongo import MongoClient
 from Abg import patch
 from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
 from pyrogram import Client
 from pyrogram.enums import ParseMode
-
 import config
+import uvloop
+
+uvloop.install()
 
 logging.basicConfig(
     format="[%(asctime)s - %(levelname)s] - %(name)s - %(message)s",
@@ -18,8 +20,9 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 LOGGER = logging.getLogger(__name__)
 boot = time.time()
-mongo = MongoCli(config.MONGO_URL)
-db = mongo.Anonymous
+mongodb = MongoCli(config.MONGO_URL)
+db = mongodb.Anonymous
+mongo = MongoClient(config.MONGO_URL)
 OWNER = config.OWNER_ID
 
 
@@ -47,3 +50,4 @@ class shizuchat(Client):
 
 
 shizuchat = shizuchat()
+    
