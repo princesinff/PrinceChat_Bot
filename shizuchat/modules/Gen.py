@@ -1,6 +1,7 @@
 import asyncio
 
 from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from pyrogram import Client as Client1
 from pyrogram.errors import ApiIdInvalid as ApiIdInvalid1
 from pyrogram.errors import PasswordHashInvalid as PasswordHashInvalid1
