@@ -33,25 +33,8 @@ from telethon.tl.functions.channels import JoinChannelRequest
 
 from config import SUPPORT_GRP
 from shizuchat import shizuchat
+from shizuchat.modules.helpers import retry_key
 
-
-# BUTTON
-
-retry_key = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(text="ᴛʀʏ ᴀɢᴀɪɴ ☹️", callback_data="gensession")]]
-)
-
-gen_key = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton(text="ᴩʏʀᴏɢʀᴀᴍ v1 ♲︎︎︎", callback_data="pyrogram1"),
-            InlineKeyboardButton(text="ᴩʏʀᴏɢʀᴀᴍ v2 ♲︎︎︎", callback_data="pyrogram"),
-        ],
-        [InlineKeyboardButton(text="ᴛᴇʟᴇᴛʜᴏɴ ♲︎︎︎", callback_data="telethon")],
-    ]
-)
-
-#__________
 
 async def gen_session(
     message, user_id: int, telethon: bool = False, old_pyro: bool = False
