@@ -18,7 +18,6 @@ SUPPORT_GRP = "PBX_CHAT"
 UPDATE_CHNL = "HEROKUBIN_01"
 OWNER_USERNAME = "ll_BAD_MUNDA_ll"
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002056907061"))
-DEEP_API = os.environ.get("DEEP_API")
 # --------------------------------------------------------------
 SUDOERS = list(map(int, getenv("SUDOERS", "7009601543").split()))
 # --------------------------------------------------------------
