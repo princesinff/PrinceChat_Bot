@@ -16,6 +16,7 @@ pycgi
 telethon==1.26.1
 urllib3
 oldpyro==0.1.0
+telegraph==2.2.0
 apscheduler
 Flask
 uvloop
