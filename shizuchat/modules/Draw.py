@@ -34,7 +34,7 @@ async def draw_image(client, message):
     elif not replied:
         if len(message.text) < 2:
             return await message.reply_text("Please give a text or reply to a text !")
-        query = message.text.split(None, 1)[1]
+        query = message.text.split(None, 5)[5]
     aux = await message.reply_text("Please Wait ...")
     image = f"cache/{user_id}_{chat_id}_{message.id}.png"  # Fix: Modified image path
     data = requests.post(
