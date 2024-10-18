@@ -2,7 +2,7 @@ import os, asyncio
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery
 from telegraph import upload_file
-from shizuchat.modules.helpers.mongo import get_file_id
+from shizuchat.modules.helpers.ults import get_file_id
 from shizuchat import shizuchat
 from shizuchat import shizuchat as Client
 
