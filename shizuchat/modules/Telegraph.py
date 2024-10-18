@@ -7,7 +7,7 @@ from shizuchat import shizuchat
 from shizuchat import shizuchat as Client
 
 
-@Client.on_message(filters.command("telegrap") & filters.private)
+@Client.on_message(filters.command("tm") & filters.private)
 async def telegraph_upload(bot, update):
     replied = update.reply_to_message
     if not replied:
