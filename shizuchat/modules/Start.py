@@ -83,10 +83,10 @@ async def welcomejej(client, message: Message):
                         chat.photo.big_file_id, file_name=f"chatpp{chat.id}.png"
                     )
                     chat_photo = (
-                        groups_photo if groups_photo else "https://envs.sh/nAW.jpg"
+                        groups_photo if groups_photo else "https://files.catbox.moe/6px3gg.jpg"
                     )
                 except AttributeError:
-                    chat_photo = "https://envs.sh/nAW.jpg"
+                    chat_photo = "https://files.catbox.moe/6px3gg.jpg"
                 
                 count = await shizuchat.get_chat_members_count(chat.id)
                 chats = len(await get_served_chats())
