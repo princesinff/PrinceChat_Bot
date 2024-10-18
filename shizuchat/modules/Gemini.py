@@ -3,6 +3,7 @@ from BadAPI import api
 from pyrogram import filters
 from pyrogram.enums import ChatAction
 from shizuchat import shizuchat
+from shizuchat import shizuchat as app
 
 @shizuchat.on_cmd(["gemini"])
 async def gemini_handler(client, message):
