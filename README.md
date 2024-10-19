@@ -40,7 +40,20 @@
 </h2>
 <details>
 <summary><b>ʜᴏsᴛ ᴏɴ ᴠᴘs </b></summary>
-<br>
+
+`sudo apt-get update && sudo apt-get upgrade -y`
+
+`git clone https://github.com/Badhacker98/Chat_Bot && cd Chat_Bot`
+
+`pip3 install -U -r requirements.txt`
+
+`bash setup`
+
+`screen -R Chat_Bot`
+
+`bash start`
+
+`ᴄᴛʀʟ ᴀ+ᴅ`
 
 ### Contact :
 <a href="https://t.me/II_BAD_MUNDA_II"><img title="Telegram" src="https://img.shields.io/badge/Telegram-%23000000.svg?&style=for-the-badge&logo=telegram&logoColor=61DAFB"></a>
