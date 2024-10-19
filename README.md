@@ -35,6 +35,12 @@
 <p align="center"><a href="http://dashboard.heroku.com/new?template=https://github.com/Badhacker98/Chat_Bot"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-blue?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 </details>
 
+<h2 align="center">
+    ─「 💀 ʜᴏsᴛ ᴏɴ ᴠᴘs 🤖 」─
+</h2>
+<details>
+<summary><b>ʜᴏsᴛ ᴏɴ ᴠᴘs </b></summary>
+<br>
 
 ### Contact :
 <a href="https://t.me/II_BAD_MUNDA_II"><img title="Telegram" src="https://img.shields.io/badge/Telegram-%23000000.svg?&style=for-the-badge&logo=telegram&logoColor=61DAFB"></a>
