@@ -37,7 +37,6 @@ from shizuchat.modules.helpers import (
     TOOLS_DATA_READ,
     AIBOT_READ,
 )
-)
 
 translator = GoogleTranslator()  
 from shizuchat import db
