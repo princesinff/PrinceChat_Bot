@@ -13278,9 +13278,9 @@ async def today_(_, message):
                 ]])
             await message.reply_photo(photo=pic, caption=response, reply_markup=button)
         else:
-            await message.reply_text("No data available for today.")
+            await message.reply_text("ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛᴏᴅᴀʏ.")
     else:
-        await message.reply_text("No data available for today.")
+        await message.reply_text("ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛᴏᴅᴀʏ.")
 
 
 
@@ -13331,9 +13331,9 @@ async def today_rank(_, query):
                 ]])
             await query.message.edit_text(response, reply_markup=button)
         else:
-            await query.answer("No data available for today.")
+            await query.answer("ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛᴏᴅᴀʏ.")
     else:
-        await query.answer("No data available for today.")
+        await query.answer("ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛᴏᴅᴀʏ.")
 
 
 @app.on_callback_query(filters.regex("overall"))
