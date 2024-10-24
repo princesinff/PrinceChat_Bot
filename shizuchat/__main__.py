@@ -25,9 +25,11 @@ async def anony_boot():
     try:
         await shizuchat.set_bot_commands(
             commands=[
-                BotCommand("start", "sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ."),
-                BotCommand("help", "ɢᴇᴛ ᴛʜᴇ ʜᴇʟᴘ ᴍᴇɴᴜ."),
-                BotCommand("ping", "ᴄʜᴇᴄᴋ ɪғ ᴛʜᴇ ʙᴏᴛ ɪs ᴀʟɪᴠᴇ ᴏʀ ᴅᴇsᴅ."),
+                BotCommand("start", "✧ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ✧"),
+                BotCommand("help", "✧ ɢᴇᴛ ᴛʜᴇ ʜᴇʟᴘ ᴍᴇɴᴜ ✧"),
+                BotCommand("ping", "✧ ᴄʜᴇᴄᴋ ɪғ ᴛʜᴇ ʙᴏᴛ ɪs ᴀʟɪᴠᴇ ᴏʀ ᴅᴇsᴅ ✧"),
+                BotCommand("shipping", "✧ ᴄᴏᴜᴘʟᴇs ᴏғ ᴅᴀʏ ✧"),
+                BotCommand("rankings", "✧ ᴜsᴇʀ ᴍsɢ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ ✧"),
             ]
         )
         LOGGER.info("ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅꜱ ꜱᴇᴛ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ.")
