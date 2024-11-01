@@ -13,9 +13,11 @@ BOT_TOKEN = getenv("BOT_TOKEN", None)
 DB_NAME = "shizuDB"
 MONGO_URL = getenv("MONGO_URL", None)
 OWNER_ID = int(getenv("OWNER_ID", "7009601543"))
+BOT_ID = int(getenv("BOT_ID", "7454086236"))
 SUPPORT_GRP = "PBX_CHAT"
 UPDATE_CHNL = "HEROKUBIN_01"
 OWNER_USERNAME = "ll_BAD_MUNDA_ll"
+TIME_ZONE = "Asia/Kolkata"
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002056907061"))
 # --------------------------------------------------------------
 SUDOERS = list(map(int, getenv("SUDOERS", "7009601543").split()))
