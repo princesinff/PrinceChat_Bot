@@ -1,8 +1,10 @@
 import logging
 import time
+import pytz
 from pymongo import MongoClient
 from Abg import patch
 from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram import Client
 from pyrogram.enums import ParseMode
 import config
@@ -25,6 +27,9 @@ db = mongodb.Anonymous
 mongo = MongoClient(config.MONGO_URL)
 OWNER = config.OWNER_ID
 
+#time zone
+TIME_ZONE = pytz.timezone(config.TIME_ZONE)
+scheduler = AsyncIOScheduler(timezone=TIME_ZONE)
 
 class shizuchat(Client):
     def __init__(self):
