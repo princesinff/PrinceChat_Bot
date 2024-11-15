@@ -120,7 +120,7 @@ async def set_group_language(chat: Chat):
             f"This chat language has been set to {most_common_lang.title()} ({most_common_lang})."
         )
 
-@shizuchat.on_message(filters.new_chat_members)
+@Client.on_message(filters.new_chat_members)
 async def welcomejej(client, message: Message):
     chat = message.chat
     await add_served_chat(message.chat.id)
@@ -195,8 +195,9 @@ from pathlib import Path
 import os
 import time
 import io
+from pyrogram import Client, filters
 
-@shizuchat.on_cmd(["ls"])
+@Client.on_cmd(["ls"])
 async def ls(_, m: Message):
     "To list all files and folders."
 
@@ -270,7 +271,7 @@ async def ls(_, m: Message):
         await m.reply_text(msg)
 
 
-@shizuchat.on_cmd(["start", "aistart"])
+@Client.on_cmd(["start", "aistart"])
 async def start(_, m: Message):
     users = len(await get_served_users())
     chats = len(await get_served_chats())
@@ -300,7 +301,7 @@ async def start(_, m: Message):
         await add_served_chat(m.chat.id)
 
 
-@shizuchat.on_cmd("help")
+@Client.on_cmd("help")
 async def help(client: shizuchat, m: Message):
     if m.chat.type == ChatType.PRIVATE:
         hmm = await m.reply_photo(
@@ -329,7 +330,7 @@ async def repo(_, m: Message):
 
 
 
-@shizuchat.on_cmd("ping")
+@Client.on_cmd("ping")
 async def ping(_, message: Message):
     start = datetime.now()
     UP, CPU, RAM, DISK = await bot_sys_stats()
@@ -349,7 +350,7 @@ async def ping(_, message: Message):
         await add_served_chat(message.chat.id)
 
 
-@shizuchat.on_message(filters.command("stats"))
+@Client.on_message(filters.command("stats"))
 async def stats(cli: Client, message: Message):
     users = len(await get_served_users())
     chats = len(await get_served_chats())
@@ -364,9 +365,10 @@ async def stats(cli: Client, message: Message):
 from pyrogram.enums import ParseMode
 
 from shizuchat import shizuchat
+from pyrogram import Client, filters
 
 
-@shizuchat.on_cmd("id")
+@Client.on_cmd("id")
 async def getid(client, message):
     chat = message.chat
     your_id = message.from_user.id
@@ -424,7 +426,7 @@ IS_BROADCASTING = False
 broadcast_lock = asyncio.Lock()
 
 
-@shizuchat.on_message(
+@Client.on_message(
     filters.command(["broadcast", "gcast"]) & filters.user(int(OWNER_ID))
 )
 async def broadcast_message(client, message):
@@ -577,7 +579,7 @@ DetectorFactory.seed = 0
 
 from deep_translator import GoogleTranslator
 
-@shizuchat.on_message(filters.command("check") & filters.reply)
+@Client.on_message(filters.command("check") & filters.reply)
 async def check_language(client: Client, message: Message):
     reply_text = message.reply_to_message.text
     if not reply_text:
