@@ -1,4 +1,5 @@
 from pyrogram import *
+from pyrogram import Client, filters
 from pyrogram.types import *
 from shizuchat import shizuchat
 from shizuchat.modules.helpers.basic import edit_or_reply, get_text
@@ -124,7 +125,7 @@ rtemoji = [
 ]
 
 
-@shizuchat.on_cmd(["emoji"])
+@Client.on_cmd(["emoji"])
 async def emoji(client: Client, message: Message):
     op = await edit_or_reply(message, "`Emojifying the text..`")
     args = get_text(message)
@@ -146,7 +147,7 @@ async def emoji(client: Client, message: Message):
     await op.edit(result)
     
 
-@shizuchat.on_cmd(["love"])
+@Client.on_cmd(["love"])
 async def cmoji(client: Client, message: Message):
     op = await edit_or_reply(message, "`Emojifying the text..`")
     args = get_text(message)
