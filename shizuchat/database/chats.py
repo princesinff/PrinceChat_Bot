@@ -2,7 +2,6 @@ from shizuchat import db
 
 chatsdb = db.chatsdb
 
-
 async def get_served_chats() -> list:
     chats = chatsdb.find({"chat_id": {"$lt": 0}})
     if not chats:
@@ -32,3 +31,4 @@ async def remove_served_chat(chat_id: int):
     if not is_served:
         return
     return await chatsdb.delete_one({"chat_id": chat_id})
+    
