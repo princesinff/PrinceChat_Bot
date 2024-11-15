@@ -102,6 +102,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=TOOLS_DATA_READ,
             reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
         )
+     # Show tools information
+    elif query.data == "AIBOT_CMD":
+        await query.message.edit(
+            text=AIBOT_READ,
+            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
+        )
+     # Show tools information
+    elif query.data == "ADMIN_READ2":
+        await query.message.edit(
+            text=ADMIN_READ2,
+            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
+        )
 
     # Back to the help menu
     elif query.data == "BACK_HELP":
