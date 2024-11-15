@@ -121,7 +121,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=HELP_READ,
             reply_markup=InlineKeyboardMarkup(HELP_BTN),
         )
-
+    # Show tools information
+    elif query.data == "OWNER":
+        await query.message.edit(
+            text=OWNER,
+            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
+        )
     # Chatbot commands
     elif query.data == "CHATBOT_CMD":
         await query.message.edit(
