@@ -31,6 +31,7 @@ from shizuchat.modules.helpers import (
     MUSIC_BACK_BTN,
     SOURCE_READ,
     START,
+    START_BOT,
     TOOLS_DATA_READ,
     AIBOT_READ,
     languages,
