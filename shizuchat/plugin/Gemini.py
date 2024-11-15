@@ -4,8 +4,9 @@ from pyrogram import filters
 from pyrogram.enums import ChatAction
 from shizuchat import shizuchat
 from shizuchat import shizuchat as app
+from pyrogram import Client, filters
 
-@shizuchat.on_cmd(["gemini"])
+@Client.on_cmd(["gemini"])
 async def gemini_handler(client, message):
     await app.send_chat_action(message.chat.id, ChatAction.TYPING)
     if (
