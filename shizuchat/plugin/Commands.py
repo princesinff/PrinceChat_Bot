@@ -20,7 +20,7 @@ translator = GoogleTranslator()
 lang_db = db.ChatLangDb.LangCollection
 status_db = db.chatbot_status_db.status
 
-@shizuchat.on_message(filters.command("status"))
+@Client.on_message(filters.command("status"))
 async def status_command(client: Client, message: Message):
     chat_id = message.chat.id
     chat_status = await status_db.find_one({"chat_id": chat_id})
@@ -49,7 +49,7 @@ async def get_chat_language(chat_id):
     chat_lang = await lang_db.find_one({"chat_id": chat_id})
     return chat_lang["language"] if chat_lang and "language" in chat_lang else "en"
     
-@shizuchat.on_message(filters.command(["lang", "language", "setlang"]))
+@Client.on_message(filters.command(["lang", "language", "setlang"]))
 async def set_language(client: Client, message: Message):
     await message.reply_text(
         "Please select your chat language:",
@@ -57,7 +57,7 @@ async def set_language(client: Client, message: Message):
     )
 
 
-@shizuchat.on_message(filters.command("status"))
+@Client.on_message(filters.command("status"))
 async def status_command(client: Client, message: Message):
     chat_id = message.chat.id
     chat_status = await status_db.find_one({"chat_id": chat_id})
@@ -68,7 +68,7 @@ async def status_command(client: Client, message: Message):
         await message.reply("No status found for this chat.")
 
 
-@shizuchat.on_message(filters.command(["lang", "language", "setlang"]))
+@Client.on_message(filters.command(["lang", "language", "setlang"]))
 async def set_language(client: Client, message: Message):
     await message.reply_text(
         "Please select your chat language:",
@@ -76,14 +76,14 @@ async def set_language(client: Client, message: Message):
     )
 
 
-@shizuchat.on_message(filters.command(["resetlang", "nolang"]))
+@Client.on_message(filters.command(["resetlang", "nolang"]))
 async def reset_language(client: Client, message: Message):
     chat_id = message.chat.id
     lang_db.update_one({"chat_id": chat_id}, {"$set": {"language": "nolang"}}, upsert=True)
     await message.reply_text("**Bot language has been reset in this chat to mix language.**")
 
 
-@shizuchat.on_message(filters.command("chatbot"))
+@Client.on_message(filters.command("chatbot"))
 async def chatbot_command(client: Client, message: Message):
     await message.reply_text(
         f"Chat: {message.chat.title}\n**Choose an option to enable/disable the chatbot.**",
