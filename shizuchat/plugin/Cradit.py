@@ -13215,6 +13215,7 @@ from pyrogram import filters
 from pymongo import MongoClient
 from shizuchat import shizuchat as app
 from config import MONGO_URL
+from pyrogram import Client, filters
 from pyrogram.types import *
 
 
@@ -13231,7 +13232,7 @@ pic = "https://envs.sh/ASB.jpg"
 
 # ------------------- watcher ----------------------- #
 
-@app.on_message(filters.group & filters.group, group=6)
+@Client.on_message(filters.group & filters.group, group=6)
 def today_watcher(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
@@ -13246,7 +13247,7 @@ def today_watcher(_, message):
             today[chat_id][user_id]["total_messages"] = 1
 
 
-@app.on_message(filters.group & filters.group, group=11)
+@Client.on_message(filters.group & filters.group, group=11)
 def _watcher(_, message):
     user_id = message.from_user.id    
     user_data.setdefault(user_id, {}).setdefault("total_messages", 0)
@@ -13256,7 +13257,7 @@ def _watcher(_, message):
 
 # ------------------- ranks ------------------ #
 
-@app.on_message(filters.command("rankings"))
+@Client.on_message(filters.command("rankings"))
 async def today_(_, message):
     chat_id = message.chat.id
     if chat_id in today:
@@ -13284,7 +13285,7 @@ async def today_(_, message):
 
 
 
-@app.on_message(filters.command("overall"))
+@Client.on_message(filters.command("overall"))
 async def ranking(_, message):
     top_members = collection.find().sort("total_messages", -1).limit(10)
     
@@ -13309,7 +13310,7 @@ async def ranking(_, message):
 
 # -------------------- regex -------------------- # 
 
-@app.on_callback_query(filters.regex("rankings"))
+@Client.on_callback_query(filters.regex("rankings"))
 async def today_rank(_, query):
     chat_id = query.message.chat.id
     if chat_id in today:
@@ -13336,7 +13337,7 @@ async def today_rank(_, query):
         await query.answer("ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛᴏᴅᴀʏ.")
 
 
-@app.on_callback_query(filters.regex("overall"))
+@Client.on_callback_query(filters.regex("overall"))
 async def overall_rank(_, query):
     top_members = collection.find().sort("total_messages", -1).limit(10)
     
