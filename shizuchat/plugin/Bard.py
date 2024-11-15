@@ -1,5 +1,6 @@
 from shizuchat import shizuchat
 from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardMarkup
 import asyncio, time,requests
@@ -9,7 +10,7 @@ from config import OWNER_USERNAME
 from BadAPI import api
 
 x=None
-@shizuchat.on_cmd(["bard"])
+@Client.on_cmd(["bard"])
 async def bard_chat(bot, message):
     global x
     if len(message.command) < 2:
