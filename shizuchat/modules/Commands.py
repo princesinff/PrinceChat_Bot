@@ -1,6 +1,6 @@
 import random
 #from TheApi import api
-from MukeshAPI import api
+from BadAPI import api
 from pymongo import MongoClient
 from pyrogram import Client, filters
 from pyrogram.errors import MessageEmpty
