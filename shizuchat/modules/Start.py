@@ -16,7 +16,26 @@ from pyrogram.errors import FloodWait, ChatAdminRequired
 from shizuchat.database.chats import get_served_chats, add_served_chat
 from shizuchat.database.users import get_served_users, add_served_user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
-
+from shizuchat.modules.helpers import (
+    ABOUT_BTN,
+    ABOUT_READ,
+    OWNER,
+    NEXT,
+    ADMIN_READ2,
+    ADMIN_READ,
+    BACK,
+    CHATBOT_BACK,
+    CHATBOT_READ,
+    DEV_OP,
+    HELP_BTN,
+    HELP_READ,
+    MUSIC_BACK_BTN,
+    SOURCE_READ,
+    START,
+    TOOLS_DATA_READ,
+    AIBOT_READ,
+    languages,
+)
 
 GSTART = """**ʜᴇʏ ᴅᴇᴀʀ {}**\n\n**ᴛʜᴀɴᴋs ғᴏʀ sᴛᴀʀᴛ ᴍᴇ ɪɴ ɢʀᴏᴜᴘ ʏᴏᴜ ᴄᴀɴ ᴄʜᴀɴɢᴇ ʟᴀɴɢᴜᴀɢᴇ ʙʏ ᴄʟɪᴄᴋ ᴏɴ ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴs.**\n**ᴄʟɪᴄᴋ ᴀɴᴅ sᴇʟᴇᴄᴛ ʏᴏᴜʀ ғᴀᴠᴏᴜʀɪᴛᴇ ʟᴀɴɢᴜᴀɢᴇ ᴛᴏ sᴇᴛ ᴄʜᴀᴛ ʟᴀɴɢᴜᴀɢᴇ ғᴏʀ ʙᴏᴛ ʀᴇᴘʟʏ.**\n\n**ᴛʜᴀɴᴋ ʏᴏᴜ ᴘʟᴇᴀsᴇ ᴇɴɪᴏʏ.**"""
 STICKER = [
