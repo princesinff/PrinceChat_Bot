@@ -89,7 +89,7 @@ async def get_chat_language(chat_id):
     return chat_lang["language"] if chat_lang and "language" in chat_lang else None
     
             
-@shizuchat.on_message(filters.incoming)
+@Client.on_message(filters.incoming)
 async def chatbot_response(client: Client, message: Message):
     global blocklist, message_counts
     try:
