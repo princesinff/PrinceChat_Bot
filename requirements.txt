@@ -24,4 +24,5 @@ telegraph==2.2.0
 apscheduler
 Flask
 uvloop
+langdetect
 git+https://github.com/badmunda98/BadAPI
