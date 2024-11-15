@@ -8,7 +8,7 @@ from pyrogram.types import BotCommand
 from config import OWNER_ID
 from shizuchat import LOGGER, shizuchat
 from shizuchat.modules import ALL_MODULES
-
+from shizuchat.modules.Clone import restart_bots
 
 async def anony_boot():
     try:
