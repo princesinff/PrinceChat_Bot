@@ -18,6 +18,8 @@ from shizuchat.modules.helpers import chatai
 from shizuchat.modules.helpers import (
     ABOUT_BTN,
     ABOUT_READ,
+    OWNER,
+    ADMIN_READ2,
     ADMIN_READ,
     BACK,
     CHATBOT_BACK,
@@ -29,6 +31,7 @@ from shizuchat.modules.helpers import (
     SOURCE_READ,
     START,
     TOOLS_DATA_READ,
+    AIBOT_READ,
     languages,
 )
 
