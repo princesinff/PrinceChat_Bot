@@ -21,6 +21,7 @@ from shizuchat.modules.helpers import (
     ABOUT_READ,
     OWNER,
     NEXT,
+    PNG_BTN,
     ADMIN_READ2,
     ADMIN_READ,
     BACK,
