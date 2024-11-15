@@ -10,7 +10,7 @@ from shizuchat.database.chats import add_served_chat
 from shizuchat.database.users import add_served_user
 from config import MONGO_URL
 from shizuchat import shizuchat, mongo, LOGGER, db
-from shizuchat.mplugin.helpers import chatai, CHATBOT_ON, languages
+from shizuchat.plugin.helpers import chatai, CHATBOT_ON, languages
 
 import asyncio
 
