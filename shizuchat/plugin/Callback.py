@@ -54,7 +54,7 @@ def generate_language_buttons(languages):
     return InlineKeyboardMarkup(buttons)
 
 
-@shizuchat.on_callback_query()
+@Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
     LOGGER.info(query.data)
 
