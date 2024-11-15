@@ -28,7 +28,6 @@ from shizuchat.modules.helpers import (
     DEV_OP,
     HELP_BTN,
     HELP_READ,
-    MUSIC_BACK_BTN,
     SOURCE_READ,
     START,
     START_BOT,
