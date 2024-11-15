@@ -10,7 +10,7 @@ from shizuchat.database.chats import add_served_chat
 from shizuchat.database.users import add_served_user
 from config import MONGO_URL
 from shizuchat import shizuchat, mongo, LOGGER, db
-from shizuchat.plugin.helpers import chatai, CHATBOT_ON, languages
+from shizuchat.mplugin.helpers import chatai, CHATBOT_ON, languages
 
 import asyncio
 
@@ -56,11 +56,12 @@ async def save_reply(original_message: Message, reply_message: Message):
             reply_data["check"] = "voice"
         elif reply_message.text:
             translated_text = reply_message.text
-            try:
+            """try:
+                await asyncio.sleep(10)
                 translated_text = GoogleTranslator(source='auto', target='en').translate(reply_message.text)
             except Exception as e:
                 print(f"Translation error: {e}, saving original text.")
-                translated_text = reply_message.text
+                translated_text = reply_message.text"""
             reply_data["text"] = translated_text
             reply_data["check"] = "none"
 
@@ -85,7 +86,7 @@ async def get_reply(word: str):
 
 async def get_chat_language(chat_id):
     chat_lang = await lang_db.find_one({"chat_id": chat_id})
-    return chat_lang["language"] if chat_lang and "language" in chat_lang else "en"
+    return chat_lang["language"] if chat_lang and "language" in chat_lang else None
     
             
 @shizuchat.on_message(filters.incoming)
@@ -164,4 +165,3 @@ async def chatbot_response(client: Client, message: Message):
         await message.reply_text("🙄🙄")
     except Exception as e:
         return
-                    
