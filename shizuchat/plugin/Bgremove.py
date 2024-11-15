@@ -5,6 +5,7 @@ from shizuchat import shizuchat
 from aiohttp import ContentTypeError
 from shizuchat import shizuchat as app
 from pyrogram import filters
+from pyrogram import Client, filters
 
 def check_filename(filroid):
     if os.path.exists(filroid):
@@ -35,7 +36,7 @@ async def RemoveBG(input_file_name):
             return True, name
 
 
-@shizuchat.on_cmd(["rmbg"])
+@Client.on_cmd(["rmbg"])
 async def rmbg(bot, message):
   rmbg = await message.reply("ᴘʀᴏᴄᴇꜱꜱɪɴɢ...") 
   replied = message.reply_to_message
