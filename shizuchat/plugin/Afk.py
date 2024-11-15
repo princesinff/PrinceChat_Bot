@@ -1,12 +1,13 @@
 import time, re
 from pyrogram.enums import MessageEntityType
 from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.types import Message
 from shizuchat import shizuchat
 from shizuchat.database.readable_time import get_readable_time
 from shizuchat.database.afkdb import add_afk, is_afk, remove_afk
 
-@shizuchat.on_message(
+@Client.on_message(
     filters.command(["afk", "brb"]))
 async def active_afk(_, message: Message):
     if message.sender_chat:
@@ -166,7 +167,7 @@ async def active_afk(_, message: Message):
 chat_watcher_group = 1
 
 
-@shizuchat.on_message(
+@Client.on_message(
     ~filters.me & ~filters.bot & ~filters.via_bot,
     group=chat_watcher_group,
 )
