@@ -34,6 +34,7 @@ async def bard_chat(bot, message):
 
 from shizuchat import shizuchat
 from pyrogram import filters
+from pyrogram import Client, filters
 import asyncio, time,requests
 from pyrogram.types import InlineKeyboardMarkup
 from pyrogram.enums import ChatAction,ParseMode
@@ -44,7 +45,7 @@ from shizuchat.modules.helpers.inline import DEV_OP
 
 x=None
 #blackbox
-@shizuchat.on_cmd(["blackbox"])
+@Client.on_cmd(["blackbox"])
 async def blackbox_chat(bot, message):
     if len(message.command) < 2:
             await message.reply_text(
