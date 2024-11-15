@@ -1,4 +1,5 @@
 aiohttp
+aiofiles
 apscheduler==3.10.4
 Abg==2.3.1
 pyrogram==2.0.106
