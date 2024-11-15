@@ -125,7 +125,8 @@ rtemoji = [
 ]
 
 
-@Client.on_cmd(["emoji"])
+@Client.on_message(
+    filters.command(["emoji"]))
 async def emoji(client: Client, message: Message):
     op = await edit_or_reply(message, "`Emojifying the text..`")
     args = get_text(message)
@@ -147,7 +148,8 @@ async def emoji(client: Client, message: Message):
     await op.edit(result)
     
 
-@Client.on_cmd(["love"])
+@Client.on_message(
+    filters.command(["love", "bad"]))
 async def cmoji(client: Client, message: Message):
     op = await edit_or_reply(message, "`Emojifying the text..`")
     args = get_text(message)
