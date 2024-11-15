@@ -19,6 +19,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from shizuchat.modules.helpers import (
     ABOUT_BTN,
     ABOUT_READ,
+    PNG_BTN,
     OWNER,
     NEXT,
     ADMIN_READ2,
