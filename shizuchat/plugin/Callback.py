@@ -19,6 +19,7 @@ from shizuchat.modules.helpers import (
     ABOUT_BTN,
     ABOUT_READ,
     OWNER,
+    PNG_BTN,
     NEXT,
     ADMIN_READ2,
     ADMIN_READ,
