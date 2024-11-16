@@ -6,7 +6,7 @@ import psutil
 import config
 from shizuchat import _boot_
 from shizuchat import get_readable_time
-from shizuchat.mplugin.helpers import is_owner
+from shizuchat.plugin.helpers import is_owner
 from shizuchat import mongo
 from datetime import datetime
 from pymongo import MongoClient
@@ -19,7 +19,7 @@ from shizuchat.database.chats import get_served_chats, add_served_chat
 from shizuchat.database.users import get_served_users, add_served_user
 from shizuchat.database.clonestats import get_served_cchats, get_served_cusers, add_served_cuser, add_served_cchat
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
-from shizuchat.mplugin.helpers import (
+from shizuchat.plugin.helpers import (
     ABOUT_BTN,
     ABOUT_READ,
     OWNER,
