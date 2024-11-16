@@ -1,4 +1,5 @@
 from shizuchat import shizuchat
+from shizuchat import shizuchat, mongo, LOGGER, db
 from pyrogram import Client, filters
 from pyrogram.types import Message
 import asyncio
