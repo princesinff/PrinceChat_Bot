@@ -1,4 +1,4 @@
-from shizuchat import 
+from shizuchat import shizuchat
 from pyrogram import Client, filters
 import asyncio
 from pyrogram import *
