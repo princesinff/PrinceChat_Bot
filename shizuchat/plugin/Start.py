@@ -20,15 +20,24 @@ from shizuchat.database.users import get_served_users, add_served_user
 from shizuchat.database.clonestats import get_served_cchats, get_served_cusers, add_served_cuser, add_served_cchat
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from shizuchat.mplugin.helpers import (
+    ABOUT_BTN,
+    ABOUT_READ,
+    OWNER,
+    NEXT,
+    PNG_BTN,
+    ADMIN_READ2,
+    ADMIN_READ,
+    BACK,
+    CHATBOT_BACK,
+    CHATBOT_READ,
+    DEV_OP,
+    HELP_BTN,
+    HELP_READ,
+    SOURCE_READ,
     START,
     START_BOT,
-    PNG_BTN,
-    CLOSE_BTN,
-    HELP_BTN,
-    HELP_BUTN,
-    HELP_READ,
-    HELP_START,
-    SOURCE_READ,
+    TOOLS_DATA_READ,
+    AIBOT_READ,
 )
 
 GSTART = """**ʜᴇʏ ᴅᴇᴀʀ {}**\n\n**ᴛʜᴀɴᴋs ғᴏʀ sᴛᴀʀᴛ ᴍᴇ ɪɴ ɢʀᴏᴜᴘ ʏᴏᴜ ᴄᴀɴ ᴄʜᴀɴɢᴇ ʟᴀɴɢᴜᴀɢᴇ ʙʏ ᴄʟɪᴄᴋ ᴏɴ ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴs.**\n**ᴄʟɪᴄᴋ ᴀɴᴅ sᴇʟᴇᴄᴛ ʏᴏᴜʀ ғᴀᴠᴏᴜʀɪᴛᴇ ʟᴀɴɢᴜᴀɢᴇ ᴛᴏ sᴇᴛ ᴄʜᴀᴛ ʟᴀɴɢᴜᴀɢᴇ ғᴏʀ ʙᴏᴛ ʀᴇᴘʟʏ.**\n\n**ᴛʜᴀɴᴋ ʏᴏᴜ ᴘʟᴇᴀsᴇ ᴇɴɪᴏʏ.**"""
