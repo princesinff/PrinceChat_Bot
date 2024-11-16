@@ -35,6 +35,7 @@ from shizuchat.plugin.helpers import (
     START,
     PNG_BTN,
     TOOLS_DATA_READ,
+    CLOSE_BTN,
     languages,
 )
 
