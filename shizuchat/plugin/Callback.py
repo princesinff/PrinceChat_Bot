@@ -14,15 +14,10 @@ from pyrogram.types import CallbackQuery
 import asyncio
 import config
 from shizuchat import LOGGER, shizuchat, db
-from shizuchat.modules.helpers import chatai
-from shizuchat.modules.helpers import (
+from shizuchat.plugin.helpers import chatai
 from shizuchat.plugin.helpers import (
     ABOUT_BTN,
     ABOUT_READ,
-    OWNER,
-    NEXT,
-    PNG_BTN,
-    ADMIN_READ2,
     ADMIN_READ,
     BACK,
     CHATBOT_BACK,
@@ -30,11 +25,10 @@ from shizuchat.plugin.helpers import (
     DEV_OP,
     HELP_BTN,
     HELP_READ,
+    MUSIC_BACK_BTN,
     SOURCE_READ,
     START,
-    START_BOT,
     TOOLS_DATA_READ,
-    AIBOT_READ,
     languages,
 )
 
@@ -99,25 +93,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "ADMINS":
         await query.message.edit(
             text=ADMIN_READ,
-            reply_markup=InlineKeyboardMarkup(NEXT),
+            reply_markup=InlineKeyboardMarkup(MUSIC_BACK_BTN),
         )
 
     # Show tools information
     elif query.data == "TOOLS_DATA":
         await query.message.edit(
             text=TOOLS_DATA_READ,
-            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
-        )
-     # Show tools information
-    elif query.data == "AIBOT_CMD":
-        await query.message.edit(
-            text=AIBOT_READ,
-            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
-        )
-     # Show tools information
-    elif query.data == "ADMIN_READ2":
-        await query.message.edit(
-            text=ADMIN_READ2,
             reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
         )
 
@@ -127,12 +109,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=HELP_READ,
             reply_markup=InlineKeyboardMarkup(HELP_BTN),
         )
-    # Show tools information
-    elif query.data == "OWNER":
-        await query.message.edit(
-            text=OWNER,
-            reply_markup=InlineKeyboardMarkup(CHATBOT_BACK),
-        )
+
     # Chatbot commands
     elif query.data == "CHATBOT_CMD":
         await query.message.edit(
