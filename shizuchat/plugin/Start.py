@@ -21,6 +21,7 @@ from shizuchat.database.clonestats import get_served_cchats, get_served_cusers, 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from shizuchat.plugin.helpers import (
     ABOUT_BTN,
+    START_BOT)
     ABOUT_READ,
     ADMIN_READ,
     BACK,
