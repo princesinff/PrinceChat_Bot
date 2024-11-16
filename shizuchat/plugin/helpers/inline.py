@@ -5,7 +5,7 @@ from shizuchat import OWNER, shizuchat
 
 
 START_BOT = [
-    [
+        [
         InlineKeyboardButton(
             text="✦ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✦",
             url=f"https://t.me/{shizuchat.username}?startgroup=true",
@@ -56,14 +56,6 @@ PNG_BTN = [
     ],
 ]
 
-
-NEXT = [
-    [
-        InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="BACK"),
-        InlineKeyboardButton(text="⦿ ɴᴇxᴛ ⦿", callback_data="ADMIN_READ2"),
-    ],
-]
-
 BACK = [
     [
         InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="BACK"),
@@ -72,15 +64,10 @@ BACK = [
 
 
 HELP_BTN = [
-        [
-        InlineKeyboardButton(text="🌸 ᴅᴇᴠ 🌸", callback_data="OWNER"),
-    ],
     [
-        InlineKeyboardButton(text="💫 ᴀᴅᴍɪɴs 💫", callback_data="ADMINS"),
         InlineKeyboardButton(text="🤖 ᴄʜᴀᴛʙᴏᴛ 🤖", callback_data="CHATBOT_CMD"),
     ],
     [ 
-        InlineKeyboardButton(text="⚡ ᴀɪ ғᴇᴀᴛᴜʀᴇs ⚡", callback_data="AIBOT_CMD"),
         InlineKeyboardButton(text="🛒 ᴛᴏᴏʟs 🛒", callback_data="TOOLS_DATA"),
     ],
     [
@@ -103,6 +90,13 @@ CHATBOT_ON = [
     ],
 ]
 
+
+MUSIC_BACK_BTN = [
+    [
+        InlineKeyboardButton(text="sᴏᴏɴ", callback_data=f"soom"),
+    ],
+]
+
 S_BACK = [
     [
         InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="SBACK"),
@@ -112,7 +106,7 @@ S_BACK = [
 
 
 CHATBOT_BACK = [
-    [
+[
         InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="CHATBOT_BACK"),
         InlineKeyboardButton(text="⦿ ᴄʟᴏsᴇ ⦿", callback_data="CLOSE"),
     ],
@@ -120,7 +114,7 @@ CHATBOT_BACK = [
 
 
 HELP_START = [
-    [
+[
         InlineKeyboardButton(text="« ʜᴇʟᴘ »", callback_data="HELP"),
         InlineKeyboardButton(text="🚫 ᴄʟᴏsᴇ 🚫", callback_data="CLOSE"),
     ],
@@ -128,7 +122,7 @@ HELP_START = [
 
 
 HELP_BUTN = [
-    [
+[
         InlineKeyboardButton(
             text="« ʜᴇʟᴘ »", url=f"https://t.me/{shizuchat.username}?start=help"
         ),
