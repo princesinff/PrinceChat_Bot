@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram import Client, filters
+from pyrogram.types import Message
 import asyncio
 from pyrogram import *
 from shizuchat import shizuchat
