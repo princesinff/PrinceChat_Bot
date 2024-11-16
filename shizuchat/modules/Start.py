@@ -34,6 +34,7 @@ from shizuchat.modules.helpers import (
     START,
     START_BOT,
     TOOLS_DATA_READ,
+    CLOSE_BTN,
     AIBOT_READ,
     languages,
 )
