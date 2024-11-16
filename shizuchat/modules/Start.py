@@ -152,7 +152,7 @@ async def welcomejej(client, message: Message):
                         groups_photo if groups_photo else "https://envs.sh/IL_.jpg"
                     )
                 except AttributeError:
-                    chat_photo = "https://envs.sh/IL_.jpg"
+                    chat_photo = "https://files.catbox.moe/6px3gg.jpg"
                 except Exception as e:
                     pass
 
