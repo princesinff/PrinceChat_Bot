@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram import Client, filters
 import asyncio
 from pyrogram import *
+from shizuchat import shizuchat
 
 @shizuchat.on_cmd(["bad_word"])
 async def bad_word_filter(client, message):
