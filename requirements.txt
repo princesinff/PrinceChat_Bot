@@ -15,6 +15,7 @@ dnspython
 tgcrypto==1.2.2
 asyncio
 python-dotenv
+psutil
 lexica-api
 deep-translator
 pycgi
