@@ -114,7 +114,7 @@ async def chatbot_response(client: Client, message: Message):
             if message_counts[user_id]["count"] >= 6:
                 blocklist[user_id] = current_time + timedelta(minutes=1)
                 message_counts.pop(user_id, None)
-                await message.reply_text(f"**Hey, {message.from_user.mention}**\n\n**You are blocked for 1 minute due to spam messages.**\n**Try again after 1 minute 🤣.**")
+                await message.reply_text(f"**ʜᴇʏ, {message.from_user.mention}**\n\nʏᴏᴜ ᴀʀᴇ ʙʟᴏᴄᴋᴇᴅ ꜰᴏʀ 1 ᴍɪɴᴜᴛᴇ ᴅᴜᴇ ᴛᴏ ꜱᴘᴀᴍ ᴍᴇꜱꜱᴀɢᴇꜱ.\nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 1 ᴍɪɴᴜᴛᴇ 😁.")
                 return
         chat_id = message.chat.id
         chat_status = await status_db.find_one({"chat_id": chat_id})
