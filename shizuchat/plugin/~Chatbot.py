@@ -2,16 +2,15 @@ import random
 from pymongo import MongoClient
 from pyrogram import Client, filters
 from pyrogram.errors import MessageEmpty
-from datetime import datetime, timedelta
 from pyrogram.enums import ChatAction, ChatMemberStatus as CMS
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from deep_translator import GoogleTranslator
 from shizuchat.database.chats import add_served_chat
 from shizuchat.database.users import add_served_user
+from shizuchat.database import add_served_cchat, add_served_cuser
 from config import MONGO_URL
 from shizuchat import shizuchat, mongo, LOGGER, db
 from shizuchat.plugin.helpers import chatai, CHATBOT_ON, languages
-
 import asyncio
 
 translator = GoogleTranslator()
@@ -20,8 +19,6 @@ lang_db = db.ChatLangDb.LangCollection
 status_db = db.chatbot_status_db.status
 
 replies_cache = []
-blocklist = {}
-message_counts = {}
 
 async def load_replies_cache():
     global replies_cache
@@ -56,12 +53,7 @@ async def save_reply(original_message: Message, reply_message: Message):
             reply_data["check"] = "voice"
         elif reply_message.text:
             translated_text = reply_message.text
-            """try:
-                await asyncio.sleep(10)
-                translated_text = GoogleTranslator(source='auto', target='en').translate(reply_message.text)
-            except Exception as e:
-                print(f"Translation error: {e}, saving original text.")
-                translated_text = reply_message.text"""
+            
             reply_data["text"] = translated_text
             reply_data["check"] = "none"
 
@@ -83,39 +75,13 @@ async def get_reply(word: str):
         relevant_replies = replies_cache
     return random.choice(relevant_replies) if relevant_replies else None
 
-
 async def get_chat_language(chat_id):
     chat_lang = await lang_db.find_one({"chat_id": chat_id})
     return chat_lang["language"] if chat_lang and "language" in chat_lang else None
     
-            
 @Client.on_message(filters.incoming)
 async def chatbot_response(client: Client, message: Message):
-    global blocklist, message_counts
     try:
-        user_id = message.from_user.id
-        chat_id = message.chat.id
-        current_time = datetime.now()
-        
-        blocklist = {uid: time for uid, time in blocklist.items() if time > current_time}
-
-        if user_id in blocklist:
-            return
-
-        if user_id not in message_counts:
-            message_counts[user_id] = {"count": 1, "last_time": current_time}
-        else:
-            time_diff = (current_time - message_counts[user_id]["last_time"]).total_seconds()
-            if time_diff <= 3:
-                message_counts[user_id]["count"] += 1
-            else:
-                message_counts[user_id] = {"count": 1, "last_time": current_time}
-            
-            if message_counts[user_id]["count"] >= 6:
-                blocklist[user_id] = current_time + timedelta(minutes=1)
-                message_counts.pop(user_id, None)
-                await message.reply_text(f"**ʜᴇʏ, {message.from_user.mention}**\n\nʏᴏᴜ ᴀʀᴇ ʙʟᴏᴄᴋᴇᴅ ꜰᴏʀ 1 ᴍɪɴᴜᴛᴇ ᴅᴜᴇ ᴛᴏ ꜱᴘᴀᴍ ᴍᴇꜱꜱᴀɢᴇꜱ.\nᴛʀʏ ᴀɢᴀɪɴ ᴀꜰᴛᴇʀ 1 ᴍɪɴᴜᴛᴇ 😁.")
-                return
         chat_id = message.chat.id
         chat_status = await status_db.find_one({"chat_id": chat_id})
         
@@ -124,11 +90,14 @@ async def chatbot_response(client: Client, message: Message):
 
         if message.text and any(message.text.startswith(prefix) for prefix in ["!", "/", ".", "?", "@", "#"]):
             if message.chat.type in ["group", "supergroup"]:
-                return await add_served_chat(chat_id)
+                await add_served_cchat(bot_user_id, message.chat.id)
+                return await add_served_chat(message.chat.id)
             else:
-                return await add_served_user(chat_id)
+                await add_served_cuser(bot_user_id, message.chat.id)
+                return await add_served_user(message.chat.id)
+
         
-        if (message.reply_to_message and message.reply_to_message.from_user.id == shizuchat.id) or not message.reply_to_message:
+        if ((message.reply_to_message and message.reply_to_message.from_user.id == client.me.id) or not message.reply_to_message) and not message.from_user.is_bot:
             reply_data = await get_reply(message.text)
 
             if reply_data:
@@ -142,26 +111,53 @@ async def chatbot_response(client: Client, message: Message):
                     if not translated_text:
                         translated_text = response_text
                 if reply_data["check"] == "sticker":
-                    await message.reply_sticker(reply_data["text"])
+                    try:
+                        await message.reply_sticker(reply_data["text"])
+                    except:
+                        pass
                 elif reply_data["check"] == "photo":
-                    await message.reply_photo(reply_data["text"])
+                    try:
+                        await message.reply_photo(reply_data["text"])
+                    except:
+                        pass
                 elif reply_data["check"] == "video":
-                    await message.reply_video(reply_data["text"])
+                    try:
+                        await message.reply_video(reply_data["text"])
+                    except:
+                        pass
                 elif reply_data["check"] == "audio":
-                    await message.reply_audio(reply_data["text"])
+                    try:
+                        await message.reply_audio(reply_data["text"])
+                    except:
+                        pass
                 elif reply_data["check"] == "gif":
-                    await message.reply_animation(reply_data["text"])
+                    try:
+                        await message.reply_animation(reply_data["text"])
+                    except:
+                        pass
                 elif reply_data["check"] == "voice":
-                    await message.reply_voice(reply_data["text"])
+                    try:
+                        await message.reply_voice(reply_data["text"])
+                    except:
+                        pass
                 else:
-                    await message.reply_text(translated_text)
+                    try:
+                        await message.reply_text(translated_text)
+                    except:
+                        pass
             else:
-                await message.reply_text("**I don't understand. What are you saying?**")
+                try:
+                    await message.reply_text("**I don't understand. What are you saying?**")
+                except:
+                    pass
 
         if message.reply_to_message:
             await save_reply(message.reply_to_message, message)
 
     except MessageEmpty:
-        await message.reply_text("🙄🙄")
+        try:
+            await message.reply_text("🙄🙄")
+        except:
+            pass
     except Exception as e:
         return
