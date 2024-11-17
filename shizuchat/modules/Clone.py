@@ -115,7 +115,7 @@ async def delete_cloned_bot(client, message):
             await clonebotdb.delete_one({"token": bot_token})
             CLONES.remove(cloned_bot["bot_id"])
             await ok.edit_text(
-                "🤖  ʏᴏᴜʀ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ʜᴀꜱ ʙᴇᴇɴ ᴅɪꜱᴄᴏɴɴᴇᴄᴛᴇᴅ ꜰʀᴏᴍ ᴍʏ ꜱᴇʀᴠᴇʀ ☠️\nᴄʟᴏɴᴇ ʙʏ:- /clone"
+                "🤖 ʏᴏᴜʀ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ʜᴀꜱ ʙᴇᴇɴ ʀᴇᴍᴏᴠᴇᴅ ꜰʀᴏᴍ ᴍʏ ᴅᴀᴛᴀʙᴀꜱᴇ ✅\n🔄 ᴋɪɴᴅʟʏ ʀᴇᴠᴏᴋᴇ ʏᴏᴜʀ ʙᴏᴛ ᴛᴏᴋᴇɴ ꜰʀᴏᴍ @botfather ᴏᴛʜᴇʀᴡɪꜱᴇ ʏᴏᴜʀ ʙᴏᴛ ᴡɪʟʟ ꜱᴛᴏᴘ ᴡʜᴇɴ @{app.username} ᴡɪʟʟ ʀᴇꜱᴛᴀʀᴛ ☠️"
             )
             os.system(f"kill -9 {os.getpid()} && bash start")
         else:
