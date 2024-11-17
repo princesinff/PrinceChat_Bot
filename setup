@@ -105,6 +105,7 @@ pprint "\nBOT TOKEN: "; color_reset; read bot_token
 pprint "\nMONGO URI: "; color_reset; read mongo_url
 pprint "\nOWNER USERNAME: "; color_reset; read owner_username
 pprint "\nOWNER ID:"; color_reset; read ownid
+pprint "\nSTRING SESSION: "; color_reset; read string_session
 
 pprint "\n\nProcessing your vars, wait a while !" "cgreen"
 
@@ -117,6 +118,7 @@ API_HASH = $api_hash
 BOT_TOKEN = $bot_token
 MONGO_URL = $mongo_url
 OWNER_USERNAME = $owner_username
+STRING_SESSION = $string
 OWNER_ID = $ownid""" > .env
 clear
 
