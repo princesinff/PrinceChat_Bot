@@ -3,20 +3,25 @@ import asyncio
 import importlib
 from flask import Flask
 import threading
+import config
 from pyrogram import idle
 from pyrogram.types import BotCommand
 from config import OWNER_ID
-from shizuchat import LOGGER, shizuchat
+from shizuchat import LOGGER, shizuchat, userbot, load_clone_owners
 from shizuchat.modules import ALL_MODULES
 from shizuchat.modules.Clone import restart_bots
 
 async def anony_boot():
     try:
         await shizuchat.start()
-        
-        
         asyncio.create_task(restart_bots())
-        
+        await load_clone_owners()
+        if config.STRING1:
+            try:
+                await userbot.start()
+            except Exception as ex:
+                print(f"Error in starting id-chatbot :- {ex}")
+                pass
     except Exception as ex:
         LOGGER.error(ex)
 
@@ -47,9 +52,8 @@ async def anony_boot():
     
     await idle()
 
-# Flask Server Code for Health Check
-app = Flask(__name__)
 
+app = Flask(__name__)
 @app.route('/')
 def home():
     return "Bot is running"
@@ -58,11 +62,8 @@ def run_flask():
     app.run(host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
-    # Start Flask server in a new thread
     flask_thread = threading.Thread(target=run_flask)
     flask_thread.start()
-
-    # Start the bot asynchronously
     asyncio.get_event_loop().run_until_complete(anony_boot())
     LOGGER.info("Stopping shizuchat Bot...")
     
