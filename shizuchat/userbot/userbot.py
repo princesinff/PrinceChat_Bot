@@ -12,7 +12,7 @@ class Userbot(Client):
             name="BADAss1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
-            session_string=str(config.STRING1),
+            session_string=str(config.STRING),
             no_updates=False,
             plugins=dict(root="shizuchat.plugin"),
         )
