@@ -4,6 +4,7 @@ import importlib
 from flask import Flask
 import threading
 import config
+from shizuchat import ID_CHATBOT
 from pyrogram import idle
 from pyrogram.types import BotCommand
 from config import OWNER_ID
@@ -14,11 +15,21 @@ from shizuchat.modules.Clone import restart_bots
 async def anony_boot():
     try:
         await shizuchat.start()
+        try:
+            await shizuchat.send_message(int(OWNER_ID), f"**{shizuchat.mention} Is started✅**")
+        except Exception as ex:
+            LOGGER.info(f"@{shizuchat.username} Started, please start the bot from owner id.")
+    
         asyncio.create_task(restart_bots())
         await load_clone_owners()
         if config.STRING1:
             try:
                 await userbot.start()
+                try:
+                    await shizuchat.send_message(int(OWNER_ID), f"**Id-Chatbot Also Started✅**")
+                except Exception as ex:
+                    LOGGER.info(f"@{shizuchat.username} Started, please start the bot from owner id.")
+    
             except Exception as ex:
                 print(f"Error in starting id-chatbot :- {ex}")
                 pass
@@ -45,10 +56,6 @@ async def anony_boot():
         LOGGER.error(f"Failed to set bot commands: {ex}")
     
     LOGGER.info(f"@{shizuchat.username} Started.")
-    try:
-        await shizuchat.send_message(int(OWNER_ID), f"{shizuchat.mention} has started")
-    except Exception as ex:
-        LOGGER.info(f"@{shizuchat.username} Started, please start the bot from owner id.")
     
     await idle()
 
@@ -66,4 +73,3 @@ if __name__ == "__main__":
     flask_thread.start()
     asyncio.get_event_loop().run_until_complete(anony_boot())
     LOGGER.info("Stopping shizuchat Bot...")
-    
