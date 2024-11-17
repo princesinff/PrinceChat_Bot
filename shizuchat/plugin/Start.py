@@ -12,7 +12,7 @@ from datetime import datetime
 from pymongo import MongoClient
 from pyrogram.enums import ChatType
 from pyrogram import Client, filters
-from shizuchat import CLONE_OWNERS
+from shizuchat import CLONE_OWNERS, db
 from config import OWNER_ID, MONGO_URL, OWNER_USERNAME
 from pyrogram.errors import FloodWait, ChatAdminRequired
 from shizuchat.database.chats import get_served_chats, add_served_chat
