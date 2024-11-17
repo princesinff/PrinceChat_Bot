@@ -16,7 +16,7 @@ async def anony_boot():
     try:
         await shizuchat.start()
         try:
-            await shizuchat.send_message(int(OWNER_ID), f"**{shizuchat.mention} Is started✅**")
+            await shizuchat.send_message(int(OWNER_ID), f"**{shizuchat.mention} ɪꜱ ꜱᴛᴀʀᴛᴇᴅ❤️**")
         except Exception as ex:
             LOGGER.info(f"@{shizuchat.username} Started, please start the bot from owner id.")
     
@@ -26,7 +26,7 @@ async def anony_boot():
             try:
                 await userbot.start()
                 try:
-                    await shizuchat.send_message(int(OWNER_ID), f"**Id-Chatbot Also Started✅**")
+                    await shizuchat.send_message(int(OWNER_ID), f"ɪᴅ-ᴄʜᴀᴛʙᴏᴛ ᴀʟꜱᴏ ꜱᴛᴀʀᴛᴇᴅ 💕")
                 except Exception as ex:
                     LOGGER.info(f"@{shizuchat.username} Started, please start the bot from owner id.")
     
