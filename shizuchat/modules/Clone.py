@@ -77,7 +77,7 @@ async def clone_txt(client, message):
                 f"⚠️ <b>Error:</b>\n\n<code>{e}</code>\n\nꜰᴏʀᴡᴀʀᴅ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ @PBX_CHAT ꜰᴏʀ ᴀꜱꜱɪꜱᴛᴀɴᴄᴇ"
             )
     else:
-        await message.reply_text("ᴘʀᴏᴠɪᴅᴇ ʙᴏᴛ ᴛᴏᴋᴇɴ ᴀꜰᴛᴇʀ /clone ᴄᴏᴍᴍᴀɴᴅ ꜰʀᴏᴍ @Botfather."
+        await message.reply_text("ᴘʀᴏᴠɪᴅᴇ ʙᴏᴛ ᴛᴏᴋᴇɴ ᴀꜰᴛᴇʀ /clone ᴄᴏᴍᴍᴀɴᴅ ꜰʀᴏᴍ @Botfather.")
 
 @app.on_message(filters.command("cloned"))
 async def list_cloned_bots(client, message):
