@@ -69,7 +69,7 @@ async def clone_txt(client, message):
             CLONES.add(bot.id)
 
             await mi.edit_text(
-                f"*ʙᴏᴛ @{bot.username} ʜᴀꜱ ʙᴇᴇɴ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴄʟᴏɴᴇᴅ ᴀɴᴅ ꜱᴛᴀʀᴛᴇᴅ ✅.\nʀᴇᴍᴏᴠᴇ ᴄʟᴏɴᴇ ʙʏ :- /delclone\nᴄʜᴇᴄᴋ ᴀʟʟ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ʟɪꜱᴛ ʙʏ:- /cloned"
+                f"ʙᴏᴛ @{bot.username} ʜᴀꜱ ʙᴇᴇɴ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴄʟᴏɴᴇᴅ ᴀɴᴅ ꜱᴛᴀʀᴛᴇᴅ ✅.\nʀᴇᴍᴏᴠᴇ ᴄʟᴏɴᴇ ʙʏ :- /delclone\nᴄʜᴇᴄᴋ ᴀʟʟ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ʟɪꜱᴛ ʙʏ:- /cloned"
             )
         except BaseException as e:
             logging.exception("ᴇʀʀᴏʀ ᴡʜɪʟᴇ ᴄʟᴏɴɪɴɢ ʙᴏᴛ.")
