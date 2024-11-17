@@ -14,12 +14,12 @@ class Userbot(Client):
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
             no_updates=False,
-            plugins=dict(root="shizuchat.plugin"),
+            plugins=dict(root="shizuchat.user"),
         )
         
 
     async def start(self):
-        print(f"Starting Assistants...")
+        print(f"ꜱᴛᴀʀᴛɪɴɢ ɪᴅ ᴄʜᴀᴛʙᴏᴛ...")
 
         if config.STRING1:
             await self.one.start()
@@ -36,12 +36,12 @@ class Userbot(Client):
             self.one.name = self.one.me.mention
             self.one.username = self.one.me.username
      
-            print(f"Id-Chatbot Started as {self.one.me.first_name}")
-
+            print(f"ɪᴅ-ᴄʜᴀᴛʙᴏᴛ ꜱᴛᴀʀᴛᴇᴅ ᴀꜱ {self.one.me.first_name}")
+            
         
 
     async def stop(self):
-        LOGGER(__name__).info(f"Stopping Id-Chatbot...")
+        LOGGER(__name__).info(f"ꜱᴛᴏᴘᴘɪɴɢ ɪᴅ-ᴄʜᴀᴛʙᴏᴛ...")
         try:
             if config.STRING1:
                 await self.one.stop()
