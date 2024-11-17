@@ -2,6 +2,7 @@ import logging
 import time
 from pymongo import MongoClient
 from Abg import patch
+from shizuchat.userbot.userbot import Userbot
 from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
 from pyrogram import Client
 from pyrogram.enums import ParseMode
@@ -33,6 +34,29 @@ def dbb():
     clonedb = {}
     db = {}
 
+cloneownerdb = db.clone_owners
+
+async def load_clone_owners():
+    async for entry in cloneownerdb.find():
+        bot_id = entry["bot_id"]
+        user_id = entry["user_id"]
+        CLONE_OWNERS[bot_id] = user_id
+
+async def save_clonebot_owner(bot_id, user_id):
+    await cloneownerdb.update_one(
+        {"bot_id": bot_id},
+        {"$set": {"user_id": user_id}},
+        upsert=True
+    )
+async def get_clone_owner(bot_id):
+    data = await cloneownerdb.find_one({"bot_id": bot_id})
+    if data:
+        return data["user_id"]
+    return None
+
+async def delete_clone_owner(bot_id):
+    await cloneownerdb.delete_one({"bot_id": bot_id})
+    CLONE_OWNERS.pop(bot_id, None)
 
 
 class shizuchat(Client):
@@ -41,7 +65,6 @@ class shizuchat(Client):
             name="shizuchat",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
-            #lang_code="nolang",
             bot_token=config.BOT_TOKEN,
             in_memory=True,
             parse_mode=ParseMode.DEFAULT,
@@ -80,5 +103,5 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
     return ping_time
 
-
 shizuchat = shizuchat()
+userbot = Userbot()
