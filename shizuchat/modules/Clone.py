@@ -56,17 +56,20 @@ async def clone_txt(client, message):
                 "token": bot_token,
                 "username": bot.username,
             }
-
+            cloned_bots = clonebotdb.find()
+            cloned_bots_list = await cloned_bots.to_list(length=None)
+            total_clones = len(cloned_bots_list)
+            
             await app.send_message(
                 int(OWNER_ID), f"ɴᴇᴡ~ᴄʟᴏɴᴇ\n\nʙᴏᴛ:- @{bot.username}**\n\nᴅᴇᴛᴀɪʟs:-**\n{details}"
             )
 
             await clonebotdb.insert_one(details)
-            await save_clonebot_owner(bot.id, user_id)
+            
             CLONES.add(bot.id)
 
             await mi.edit_text(
-                f"ʙᴏᴛ @{bot.username} ʜᴀꜱ ʙᴇᴇɴ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴄʟᴏɴᴇᴅ ᴀɴᴅ ꜱᴛᴀʀᴛᴇᴅ ✅.\nʀᴇᴍᴏᴠᴇ ᴄʟᴏɴᴇ ʙʏ :- /delclone\nᴄʜᴇᴄᴋ ᴀʟʟ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ʟɪꜱᴛ ʙʏ:- /cloned"
+                f"*ʙᴏᴛ @{bot.username} ʜᴀꜱ ʙᴇᴇɴ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴄʟᴏɴᴇᴅ ᴀɴᴅ ꜱᴛᴀʀᴛᴇᴅ ✅.\nʀᴇᴍᴏᴠᴇ ᴄʟᴏɴᴇ ʙʏ :- /delclone\nᴄʜᴇᴄᴋ ᴀʟʟ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ʟɪꜱᴛ ʙʏ:- /cloned"
             )
         except BaseException as e:
             logging.exception("ᴇʀʀᴏʀ ᴡʜɪʟᴇ ᴄʟᴏɴɪɴɢ ʙᴏᴛ.")
@@ -74,8 +77,7 @@ async def clone_txt(client, message):
                 f"⚠️ <b>Error:</b>\n\n<code>{e}</code>\n\nꜰᴏʀᴡᴀʀᴅ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ @PBX_CHAT ꜰᴏʀ ᴀꜱꜱɪꜱᴛᴀɴᴄᴇ"
             )
     else:
-        await message.reply_text("ᴘʀᴏᴠɪᴅᴇ ʙᴏᴛ ᴛᴏᴋᴇɴ ᴀꜰᴛᴇʀ /clone ᴄᴏᴍᴍᴀɴᴅ ꜰʀᴏᴍ @Botfather.")
-
+        await message.reply_text("ᴘʀᴏᴠɪᴅᴇ ʙᴏᴛ ᴛᴏᴋᴇɴ ᴀꜰᴛᴇʀ /clone ᴄᴏᴍᴍᴀɴᴅ ꜰʀᴏᴍ @Botfather."
 
 @app.on_message(filters.command("cloned"))
 async def list_cloned_bots(client, message):
