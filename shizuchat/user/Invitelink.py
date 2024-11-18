@@ -3,7 +3,7 @@ import os
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
-from shizuchat.idchatbot.helpers import is_owner
+from shizuchat.user.helpers import is_owner
 from shizuchat import shizuchat
 from config import OWNER_ID
 
