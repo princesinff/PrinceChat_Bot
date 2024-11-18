@@ -10,7 +10,7 @@ from pyrogram.types import BotCommand
 from config import API_HASH, API_ID, OWNER_ID
 from shizuchat import CLONE_OWNERS
 from shizuchat import shizuchat as app, save_clonebot_owner, save_idclonebot_owner
-from shizuchat import db as mongodb
+from shizuchat import shizuchat, db as mongodb
 
 IDCLONES = set()
 cloneownerdb = mongodb.cloneownerdb
@@ -21,7 +21,7 @@ idclonebotdb = mongodb.idclonebotdb
 async def clone_txt(client, message):
     if len(message.command) > 1:
         string_session = message.text.split("/idclone", 1)[1].strip()
-        mi = await message.reply_text("ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴛʀɪɴɢ ꜱᴇꜱꜱɪᴏɴ...")
+        mi = await message.reply_text("**Checking your String Session...**")
         try:
             ai = Client(
                 name="BADIDCHATBOT",
@@ -57,16 +57,16 @@ async def clone_txt(client, message):
             IDCLONES.add(user.id)
 
             await mi.edit_text(
-                f"**ꜱᴇꜱꜱɪᴏɴ ꜰᴏʀ @{username} ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴄʟᴏɴᴇᴅ ❤️.**\n"
-                f"**ʀᴇᴍᴏᴠᴇ ᴄʟᴏɴᴇ ʙʏ:** /delclone\n**ᴄʜᴇᴄᴋ ᴀʟʟ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴꜱ ʙʏ** /cloned"
+                f"**Session for @{username} successfully cloned ✅.**\n"
+                f"**Remove clone by:** /delidclone\n**Check all cloned sessions by:** /idcloned"
             )
         except AccessTokenInvalid:
-            await mi.edit_text("**ɪɴᴠᴀʟɪᴅ ꜱᴛʀɪɴɢ ꜱᴇꜱꜱɪᴏɴ. ᴘʟᴇᴀꜱᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴠᴀʟɪᴅ ᴏɴᴇ😑**")
+            await mi.edit_text("**Invalid String Session. Please provide a valid one.**")
         except Exception as e:
-            logging.exception("ᴇʀʀᴏʀ ᴅᴜʀɪɴɢ ᴄʟᴏɴɪɴɢ ᴘʀᴏᴄᴇꜱꜱ..")
-            await mi.edit_text(f"**ᴇʀʀᴏʀ** `{e}`")
+            logging.exception("Error during cloning process.")
+            await mi.edit_text(f"**Invalid String Session. Please provide a valid pyrogram string session.:**\n\n**Error:** `{e}`")
     else:
-        await message.reply_text("**ᴘʀᴏᴠɪᴅᴇ ᴀ ꜱᴛʀɪɴɢ ꜱᴇꜱꜱɪᴏɴ ᴀꜰᴛᴇʀ ᴛʜᴇ /idclone ᴄᴏᴍᴍᴀɴᴅ.**")
+        await message.reply_text("**Provide a Pyrogram String Session after the /idclone **\n\n**Example:** `/idclone string session paste here`\n\n**Get a Pyrogram string session from here:-** [Click Here](https://telegram.tools/session-string-generator#pyrogram,user) ")
 
 
 @app.on_message(filters.command("idcloned"))
@@ -75,20 +75,20 @@ async def list_cloned_sessions(client, message):
         cloned_bots = idclonebotdb.find()
         cloned_bots_list = await cloned_bots.to_list(length=None)
         if not cloned_bots_list:
-            await message.reply_text("**ɴᴏ ꜱᴇꜱꜱɪᴏɴꜱ ʜᴀᴠᴇ ʙᴇᴇɴ ᴄʟᴏɴᴇᴅ ʏᴇᴛ.**")
+            await message.reply_text("**No sessions have been cloned yet.**")
             return
 
         total_clones = len(cloned_bots_list)
-        text = f"**ᴛᴏᴛᴀʟ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴꜱ** {total_clones}\n\n"
+        text = f"**Total Cloned Sessions:** {total_clones}\n\n"
         for bot in cloned_bots_list:
-            text += f"**ᴜꜱᴇʀ ɪᴅ:** `{bot['user_id']}`\n"
-            text += f"**ɴᴀᴍᴇ:** {bot['name']}\n"
-            text += f"**ᴜꜱᴇʀɴᴀᴍᴇ:** @{bot['username']}\n\n"
+            text += f"**User ID:** `{bot['user_id']}`\n"
+            text += f"**Name:** {bot['name']}\n"
+            text += f"**Username:** @{bot['username']}\n\n"
 
         await message.reply_text(text)
     except Exception as e:
         logging.exception(e)
-        await message.reply_text("**ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ʟɪꜱᴛɪɴɢ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴꜱ.**")
+        await message.reply_text("**An error occurred while listing cloned sessions.**")
 
 
 @app.on_message(
@@ -97,11 +97,11 @@ async def list_cloned_sessions(client, message):
 async def delete_cloned_session(client, message):
     try:
         if len(message.command) < 2:
-            await message.reply_text("**⚠️ ᴘʟᴇᴀꜱᴇ ᴘʀᴏᴠɪᴅᴇ ᴛʜᴇ ꜱᴇꜱꜱɪᴏɴ ꜱᴛʀɪɴɢ ᴀꜰᴛᴇʀ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ.**")
+            await message.reply_text("**⚠️ Please provide the string session after the command.**\n\n**Example:** `/delidclone your string session here`")
             return
 
         string_session = " ".join(message.command[1:])
-        ok = await message.reply_text("**ᴄʜᴇᴄᴋɪɴɢ ᴛʜᴇ ꜱᴇꜱꜱɪᴏɴ ꜱᴛʀɪɴɢ..**")
+        ok = await message.reply_text("**Checking the session string...**")
 
         cloned_session = await idclonebotdb.find_one({"session": string_session})
         if cloned_session:
@@ -109,24 +109,24 @@ async def delete_cloned_session(client, message):
             IDCLONES.remove(cloned_session["user_id"])
 
             await ok.edit_text(
-                f"**ꜱᴇꜱꜱɪᴏɴ ꜰᴏʀ `{cloned_session['username']}` ʜᴀꜱ ʙᴇᴇɴ ʀᴇᴍᴏᴠᴇᴅ ꜰʀᴏᴍ ᴍʏ ᴅᴀᴛᴀʙᴀꜱᴇ ✅**"
+                f"**Your String Session has been removed from my database ✅.**\n\n**Your bot will off after restart @{shizuchat.username}**"
             )
         else:
-            await message.reply_text("**⚠️ ᴛʜᴇ ᴘʀᴏᴠɪᴅᴇᴅ ꜱᴇꜱꜱɪᴏɴ ɪꜱ ɴᴏᴛ ɪɴ ᴛʜᴇ ᴄʟᴏɴᴇᴅ ʟɪꜱᴛ.**")
+            await message.reply_text("**⚠️ The provided session is not in the cloned list.**")
     except Exception as e:
-        await message.reply_text(f"**ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴅᴇʟᴇᴛɪɴɢ ᴛʜᴇ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴ:** {e}")
+        await message.reply_text(f"**An error occurred while deleting the cloned session:** {e}")
         logging.exception(e)
 
 
 @app.on_message(filters.command("delallidclone") & filters.user(int(OWNER_ID)))
 async def delete_all_cloned_sessions(client, message):
     try:
-        a = await message.reply_text("**ᴅᴇʟᴇᴛɪɴɢ ᴀʟʟ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴꜱ..**")
+        a = await message.reply_text("**Deleting all cloned sessions...**")
         await idclonebotdb.delete_many({})
         IDCLONES.clear()
-        await a.edit_text("**ᴀʟʟ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴꜱ ʜᴀᴠᴇ ʙᴇᴇɴ ᴅᴇʟᴇᴛᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ✅**")
+        await a.edit_text("**All cloned sessions have been deleted successfully ✅**")
     except Exception as e:
-        await a.edit_text(f"**ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴅᴇʟᴇᴛɪɴɢ ᴀʟʟ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴꜱ** {e}")
+        await a.edit_text(f"**An error occurred while deleting all cloned sessions:** {e}")
         logging.exception(e)
 
 
@@ -134,7 +134,7 @@ async def delete_all_cloned_sessions(client, message):
 async def restart_idchatbots():
     global IDCLONES
     try:
-        logging.info("ʀᴇꜱᴛᴀʀᴛɪɴɢ ᴀʟʟ ᴄʟᴏɴᴇᴅ ꜱᴇꜱꜱɪᴏɴꜱ...")
+        logging.info("Restarting all cloned sessions...")
         sessions = [session async for session in idclonebotdb.find()]
         
         async def restart_session(session):
@@ -148,19 +148,20 @@ async def restart_idchatbots():
                 plugins=dict(root="shizuchat.user"),
             )
             try:
+                await asyncio.sleep(60)
                 await ai.start()
                 user = await ai.get_me()
                 
                 if user.id not in IDCLONES:
                     IDCLONES.add(user.id)
 
-                logging.info(f"ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ʀᴇꜱᴛᴀʀᴛᴇᴅ ꜱᴇꜱꜱɪᴏɴ ꜰᴏʀ: @{user.username or user.first_name}")
+                logging.info(f"Successfully restarted session for: @{user.username or user.first_name}")
             except Exception as e:
-                logging.exception(f"ᴇʀʀᴏʀ ᴡʜɪʟᴇ ʀᴇꜱᴛᴀʀᴛɪɴɢ ꜱᴇꜱꜱɪᴏɴ ꜰᴏʀ: {session['username']}. ʀᴇᴍᴏᴠɪɴɢ ɪɴᴠᴀʟɪᴅ ꜱᴇꜱꜱɪᴏɴ.")
+                logging.exception(f"Error while restarting session: {string_session}. Removing invalid session.")
                 await idclonebotdb.delete_one({"session": string_session})
 
         await asyncio.gather(*(restart_session(session) for session in sessions))
 
-        logging.info("ᴀʟʟ ꜱᴇꜱꜱɪᴏɴꜱ ʀᴇꜱᴛᴀʀᴛᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ.")
+        logging.info("All sessions restarted successfully.")
     except Exception as e:
-        logging.exception("ᴇʀʀᴏʀ ᴡʜɪʟᴇ ʀᴇꜱᴛᴀʀᴛɪɴɢ ꜱᴇꜱꜱɪᴏɴꜱ.")
+        logging.exception("Error while restarting sessions.")
