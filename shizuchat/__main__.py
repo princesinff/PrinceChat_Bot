@@ -11,16 +11,18 @@ from config import OWNER_ID
 from shizuchat import LOGGER, shizuchat, userbot, load_clone_owners
 from shizuchat.modules import ALL_MODULES
 from shizuchat.modules.Clone import restart_bots
+from shizuchat.modules.Id_Clone import restart_idchatbots
 
 async def anony_boot():
     try:
         await shizuchat.start()
         try:
-            await shizuchat.send_message(int(OWNER_ID), f"**{shizuchat.mention}  ɪꜱ ꜱᴛᴀʀᴛᴇᴅ❤️**")
+            await shizuchat.send_message(int(OWNER_ID), f"**{shizuchat.mention} ɪꜱ ꜱᴛᴀʀᴛᴇᴅ❤️**")
         except Exception as ex:
             LOGGER.info(f"@{shizuchat.username} Started, please start the bot from owner id.")
     
         asyncio.create_task(restart_bots())
+        asyncio.create_task(restart_idchatbots())
         await load_clone_owners()
         if config.STRING1:
             try:
