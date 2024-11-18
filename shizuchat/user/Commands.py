@@ -12,7 +12,7 @@ from shizuchat.database.chats import add_served_chat
 from shizuchat.database.users import add_served_user
 from config import MONGO_URL
 from shizuchat import shizuchat, mongo, LOGGER, db
-from shizuchat.idchatbot.helpers import chatai, languages
+from shizuchat.user.helpers import chatai, languages
 import asyncio
 
 translator = GoogleTranslator()
