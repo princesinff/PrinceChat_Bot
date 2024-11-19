@@ -27,6 +27,7 @@ from shizuchat.modules.helpers import (
     BACK,
     CHATBOT_BACK,
     CHATBOT_READ,
+    HELP_START,
     DEV_OP,
     HELP_BTN,
     HELP_READ,
