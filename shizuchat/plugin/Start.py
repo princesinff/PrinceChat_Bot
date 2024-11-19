@@ -29,6 +29,7 @@ from shizuchat.plugin.helpers import (
     CHATBOT_READ,
     DEV_OP,
     HELP_BTN,
+    HELP_START,
     HELP_READ,
     MUSIC_BACK_BTN,
     SOURCE_READ,
