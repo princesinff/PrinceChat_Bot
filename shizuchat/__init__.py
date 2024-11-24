@@ -141,5 +141,6 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
     return ping_time
 
+sudo()
 shizuchat = shizuchat()
 userbot = Userbot()
