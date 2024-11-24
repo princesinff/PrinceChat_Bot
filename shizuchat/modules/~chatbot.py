@@ -13,7 +13,7 @@ from shizuchat.database.chats import add_served_chat
 from shizuchat.database.users import add_served_user
 from shizuchat.database import chatai, abuse_list
 from config import MONGO_URL, OWNER_ID
-from shizuchat import nexichat, mongo, LOGGER, db
+from shizuchat import shizuchat, mongo, LOGGER, db
 from shizuchat.modules.helpers import CHATBOT_ON, languages
 from shizuchat.modules.helpers import (
     ABOUT_BTN,
