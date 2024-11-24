@@ -77,7 +77,7 @@ async def request_block_word(client: Client, message: Message):
             ]
         ])
 
-        await nexichat.send_message(OWNER_ID, review_message, reply_markup=buttons)
+        await shizuchat.send_message(OWNER_ID, review_message, reply_markup=buttons)
         await message.reply_text(f"**Hey** {message.from_user.mention}\n\n**Your block request has been sent to owner for review.**")
     except Exception as e:
         await message.reply_text(f"Error: {e}")
