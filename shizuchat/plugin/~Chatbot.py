@@ -9,7 +9,7 @@ from shizuchat.database.chats import add_served_chat
 from shizuchat.database.users import add_served_user
 from shizuchat.database import abuse_list, add_served_cchat, add_served_cuser, chatai
 from config import MONGO_URL, OWNER_ID
-from shizuchat import nexichat, mongo, LOGGER, db
+from shizuchat import shizuchat, mongo, LOGGER, db
 from shizuchat.plugin.helpers import languages
 import asyncio
 
