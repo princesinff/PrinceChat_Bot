@@ -1,4 +1,4 @@
-from shizuhat import mongodb
+from shizuchat import mongodb
 from typing import Dict, List, Union
 
 sudoersdb = mongodb.sudoers
