@@ -60,11 +60,11 @@ EMOJIOS = [
 ]
 
 
-BOT = "https://files.catbox.moe/6px3gg.jpg"
+BOT = "https://files.catbox.moe/avuphi.jpg"
 IMG = [
-    "https://files.catbox.moe/6px3gg.jpg",
-    "https://files.catbox.moe/6px3gg.jpg",
-    "https://files.catbox.moe/6px3gg.jpg",
+    "https://files.catbox.moe/avuphi.jpg",
+    "https://files.catbox.moe/avuphi.jpg",
+    "https://files.catbox.moe/avuphi.jpg",
 ]
 
 
@@ -133,7 +133,7 @@ async def welcomejej(client, message: Message):
                         groups_photo if groups_photo else "https://envs.sh/IL_.jpg"
                     )
                 except AttributeError:
-                    chat_photo = "https://files.catbox.moe/6px3gg.jpg"
+                    chat_photo = "https://files.catbox.moe/avuphi.jpg"
                 except Exception as e:
                     pass
 
@@ -350,7 +350,7 @@ async def ping(client: Client, message: Message):
 
     ms = (datetime.now() - start).microseconds / 1000
     await loda.edit_text(
-        text=f"ʜᴇʏ ʙᴀʙʏ!!\n{(await client.get_me()).mention} ᴄʜᴀᴛʙᴏᴛ ɪꜱ ᴀʟɪᴠᴇ 🥀 ᴀɴᴅ ᴡᴏʀᴋɪɴɢ ꜰɪɴᴇ ᴡɪᴛʜ ᴀ ᴘɪɴɢ ᴏꜰ \n\n**➥** `{ms}` ms\n**➲ ᴄᴘᴜ:** {CPU}\n**➲ ʀᴀᴍ:** {RAM}\n**➲ ᴅɪsᴋ:** {DISK}\n**➲ ᴜᴘᴛɪᴍᴇ »** {UP}\n\n<b>||**๏ ᴍᴀᴅᴇ ᴡɪᴛʜ ❣️ ʙʏ [ʙᴀᴅ ᴍᴜɴᴅᴀ](https://t.me/{OWNER_USERNAME}) **||</b>",
+        text=f"ʜᴇʏ ʙᴀʙʏ!!\n{(await client.get_me()).mention} ᴄʜᴀᴛʙᴏᴛ ɪꜱ ᴀʟɪᴠᴇ 🥀 ᴀɴᴅ ᴡᴏʀᴋɪɴɢ ꜰɪɴᴇ ᴡɪᴛʜ ᴀ ᴘɪɴɢ ᴏꜰ \n\n**➥** `{ms}` ms\n**➲ ᴄᴘᴜ:** {CPU}\n**➲ ʀᴀᴍ:** {RAM}\n**➲ ᴅɪsᴋ:** {DISK}\n**➲ ᴜᴘᴛɪᴍᴇ »** {UP}\n\n<b>||**๏ ᴍᴀᴅᴇ ᴡɪᴛʜ ❣️ ʙʏ [ ᴘʀɪɴᴄᴇ ✯ ᴡᴇʙᴢ ](https://t.me/{OWNER_USERNAME}) **||</b>",
         reply_markup=InlineKeyboardMarkup(PNG_BTN),
     )
     if message.chat.type == ChatType.PRIVATE:
@@ -585,6 +585,3 @@ async def broadcast_message(client, message):
 
         finally:
             IS_BROADCASTING = False
-
-
-    
