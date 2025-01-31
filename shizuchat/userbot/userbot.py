@@ -24,10 +24,10 @@ class Userbot(Client):
         if config.STRING1:
             await self.one.start()
             try:
-                await self.one.join_chat("PBX_CHAT")
-                await self.one.join_chat("HEROKUBIN_01")
-                await self.one.join_chat("ll_BAD_MUNDA_WORLD_ll ")
-                await self.one.join_chat("ll_BAD_ABOUT_ll")
+                await self.one.join_chat("APNA_CLUB_09")
+                await self.one.join_chat("SWEETY_BOT_UPDATE")
+                await self.one.join_chat("LEGEND_SPARK")
+                await self.one.join_chat("PRINCE_WEBZ_INFO")
 
             except:
                 pass
@@ -47,3 +47,4 @@ class Userbot(Client):
                 await self.one.stop()
         except:
             pass
+            
