@@ -47,4 +47,3 @@ class Userbot(Client):
                 await self.one.stop()
         except:
             pass
-            
